@@ -17,8 +17,9 @@
         android:text="triv"
         android:id="@+id/textView"
         android:textSize="45sp"
-        android:textColor="@color/primaryText"
-        android:layout_marginTop="150dp"
+        android:textColor="@color/_primaryText"
+        android:layout_marginTop="175dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:typeface="monospace" />
 </RelativeLayout>

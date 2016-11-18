@@ -7,12 +7,112 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.guest.triv.CategoryActivity">
+    tools:context="com.example.guest.triv.CategoryActivity"
+    android:background="@color/_colorPrimaryDark">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"></LinearLayout>
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Choose A Categoy"
+            android:id="@+id/textView2"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/_primaryLight"
+            android:layout_marginBottom="25dp"
+            android:typeface="monospace" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sports"
+            android:id="@+id/sportsButton"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/_colorAccent"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/_primaryText" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Entertainment"
+            android:id="@+id/entertainmentButton"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/_colorAccent"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/_primaryText" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="History"
+            android:id="@+id/historyButton"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/_colorAccent"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/_primaryText" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Politics"
+            android:id="@+id/politicsButton"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/_colorAccent"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/_primaryText" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Animals"
+            android:id="@+id/animalsButton"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/_colorAccent"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/_primaryText" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Geography"
+            android:id="@+id/geographyButton"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/_colorAccent"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/_primaryText" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Random"
+            android:id="@+id/randomButton"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/_icons"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/_primaryText" />
+
+    </LinearLayout>
 </RelativeLayout>
