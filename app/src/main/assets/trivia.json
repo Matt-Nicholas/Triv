@@ -1,0 +1,123 @@
+{
+  "response_code": 0,
+  "results": [
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who had a 1969 top 5 hit with the song,  &#039;A Boy Named Sue&#039;?",
+      "correct_answer": "Johnny Cash",
+      "incorrect_answers": [
+        "Bob Dylan",
+        "Willie Nelson",
+        "Kris Kristofferson"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Which of these is NOT a player class in Team Fortress 2?",
+      "correct_answer": "Healer",
+      "incorrect_answers": [
+        "Demoman",
+        "Pyro",
+        "Spy"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "The original Planetside was released in North America on...",
+      "correct_answer": "May 20, 2003",
+      "incorrect_answers": [
+        "June 17, 2001",
+        "September 29, 2003",
+        "January 14, 2005"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the world&#039;s first video game console?",
+      "correct_answer": "Magnavox Odyssey",
+      "incorrect_answers": [
+        "Coleco Telstar",
+        "Nintendo Color TV Game",
+        "Atari 2600"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What is the orange and white bot&#039;s name in &quot;Star Wars: The Force Awakens&quot;?",
+      "correct_answer": "BB-8",
+      "incorrect_answers": [
+        "BB-3",
+        "AA-A",
+        "R2-D2"
+      ]
+    },
+    {
+      "category": "Science & Nature",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "Which horizon in a soil profile consists of bedrock?",
+      "correct_answer": "R",
+      "incorrect_answers": [
+        "O",
+        "B",
+        "D"
+      ]
+    },
+    {
+      "category": "Entertainment: Board Games",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "How many points is the Z tile worth in Scrabble?",
+      "correct_answer": "10",
+      "incorrect_answers": [
+        "8",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "category": "General Knowledge",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "What is the Swedish word for &quot;window&quot;?",
+      "correct_answer": "F&ouml;nster",
+      "incorrect_answers": [
+        "H&aring;l",
+        "Sk&auml;rm",
+        "Ruta"
+      ]
+    },
+    {
+      "category": "Politics",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "How many people are in the U.S. House of Representatives?",
+      "correct_answer": "435",
+      "incorrect_answers": [
+        "260",
+        "415",
+        "50"
+      ]
+    },
+    {
+      "category": "History",
+      "type": "boolean",
+      "difficulty": "medium",
+      "question": "If you grab the bladed end of a longsword in a specific way, you will not cut yourself.",
+      "correct_answer": "True",
+      "incorrect_answers": [
+        "False"
+      ]
+    }
+  ]
+}
