@@ -1,5 +1,8 @@
 package com.example.guest.triv;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,8 +16,8 @@ import butterknife.ButterKnife;
 
 public class CategoryActivity extends AppCompatActivity {
     // Private variable declarations
-   private static final String UNDER_CONSTRUCTION = "This category is still under construction";
-
+    private static final String UNDER_CONSTRUCTION = "This category is still under construction";
+    private static final String PREPARING_QUESTIONS = "Preparing your questions!";
     //Bind views using ButtKnife
     @Bind(R.id.sportsButton) Button mSportsButton;
     @Bind(R.id.entertainmentButton) Button mEntertainmentButton;
@@ -71,7 +74,21 @@ public class CategoryActivity extends AppCompatActivity {
         mRandomButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(CategoryActivity.this, "Random", Toast.LENGTH_LONG).show();
+                Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_LONG).show();
+
+                Handler mHandler = new Handler();
+                mHandler.postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        // Starts CategoryActivity after set amount of time
+
+                        Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
+
+                        startActivity(intent);
+                    }
+
+                }, 1500L);
             }
         });
 

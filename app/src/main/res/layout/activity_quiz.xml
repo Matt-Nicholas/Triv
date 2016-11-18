@@ -7,6 +7,102 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.guest.triv.QuizActivity">
+    tools:context="com.example.guest.triv.QuizActivity"
+    android:background="@color/_colorPrimaryDark">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Category"
+            android:id="@+id/textView3"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/_primaryText"
+            android:typeface="monospace"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="\?"
+            android:id="@+id/categoryView"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/_primaryText"
+            android:typeface="monospace" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Opps! Something went wrong."
+            android:id="@+id/questionView"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:textColor="@color/_primaryLight"
+            android:typeface="monospace"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\?"
+            android:id="@+id/answerButton0"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:typeface="monospace"
+            android:textColor="@color/_primaryText"
+            android:background="@color/_icons"
+            android:layout_marginBottom="5dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\?"
+            android:id="@+id/answerButton1"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:typeface="monospace"
+            android:textColor="@color/_primaryText"
+            android:background="@color/_icons"
+            android:layout_marginBottom="5dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\?"
+            android:id="@+id/answerButton2"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:typeface="monospace"
+            android:textColor="@color/_primaryText"
+            android:background="@color/_icons"
+            android:layout_marginBottom="5dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\?"
+            android:id="@+id/answerButton3"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:typeface="monospace"
+            android:textColor="@color/_primaryText"
+            android:background="@color/_icons"
+            android:layout_marginBottom="5dp" />
+    </LinearLayout>
 </RelativeLayout>
