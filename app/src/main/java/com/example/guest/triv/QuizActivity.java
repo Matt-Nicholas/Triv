@@ -116,7 +116,7 @@ public class QuizActivity extends AppCompatActivity {
                 });
             }else{
                 mAnswerButton1.setText(newQuestion.getIncorrectAnswers().get(1)); // Sets button text to incorrect answer if randInt returns something other than 1
-                mAnswerButton2.setOnClickListener(new View.OnClickListener(){
+                mAnswerButton1.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
                         Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
