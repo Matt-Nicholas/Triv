@@ -104,5 +104,6 @@
             android:textColor="@color/_primaryText"
             android:background="@color/_icons"
             android:layout_marginBottom="5dp" />
+
     </LinearLayout>
 </RelativeLayout>

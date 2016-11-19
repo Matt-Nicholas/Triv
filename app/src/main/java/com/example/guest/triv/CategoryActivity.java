@@ -82,13 +82,13 @@ public class CategoryActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         // Starts CategoryActivity after set amount of time
-
+                        String category = (String) mRandomButton.getText();
                         Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
-
+                        intent.putExtra("category", category);
                         startActivity(intent);
                     }
 
-                }, 1500L);
+                }, 1000L);
             }
         });
 
