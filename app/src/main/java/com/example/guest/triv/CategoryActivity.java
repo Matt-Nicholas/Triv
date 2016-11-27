@@ -14,7 +14,7 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class CategoryActivity extends AppCompatActivity {
+public class CategoryActivity extends AppCompatActivity implements View.OnClickListener{
     // Private variable declarations
     private static final String UNDER_CONSTRUCTION = "This category is still under construction";
     private static final String PREPARING_QUESTIONS = "Preparing your questions!";
@@ -33,64 +33,53 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
         ButterKnife.bind(this);
 
-
         // Set on click listeners and execute actions for category buttons
-        mSportsButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
-            }
-        });
-        mEntertainmentButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
-            }
-        });
-        mHistoryButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
-            }
-        });
-        mPoliticsButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
-            }
-        });
-        mAnimalsButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
-            }
-        });
-        mGeographyButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
-            }
-        });
-        mRandomButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_LONG).show();
+        mSportsButton.setOnClickListener(this);
+        mEntertainmentButton.setOnClickListener(this);
+        mHistoryButton.setOnClickListener(this);
+        mPoliticsButton.setOnClickListener(this);
+        mAnimalsButton.setOnClickListener(this);
+        mGeographyButton.setOnClickListener(this);
+        mRandomButton.setOnClickListener(this);
+    }
+    @Override
+    public void onClick(View v){
+        if(v == mSportsButton){
+            Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
+        }
+        if(v == mEntertainmentButton){
+            Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
+        }
+        if(v == mHistoryButton){
+            Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
+        }
+        if(v == mPoliticsButton){
+            Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
+        }
+        if(v == mAnimalsButton){
+            Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
+        }
+        if(v == mGeographyButton){
+            Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
+        }
+        if(v == mRandomButton){
+            Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
 
-                Handler mHandler = new Handler();
-                mHandler.postDelayed(new Runnable() {
+            Handler mHandler = new Handler();
+            mHandler.postDelayed(new Runnable() {
 
-                    @Override
-                    public void run() {
-                        // Starts CategoryActivity after set amount of time
-                        String category = (String) mRandomButton.getText();
-                        Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
-                        intent.putExtra("category", category);
-                        startActivity(intent);
-                    }
+                @Override
+                public void run() {
+                    // Starts CategoryActivity after set amount of time
+                    // Will eventually start after api call is complete
+                    String category = (String) mRandomButton.getText();
+                    Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
+                    intent.putExtra("category", category);
+                    startActivity(intent);
+                }
 
-                }, 1000L);
-            }
-        });
+            }, 2000L);
+        }
 
     }
 }
