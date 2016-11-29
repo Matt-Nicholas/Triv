@@ -3,13 +3,17 @@ package com.example.guest.triv.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import okhttp3.Call;
+import okhttp3.Callback;
+import java.io.IOException;
 import com.example.guest.triv.R;
 import com.example.guest.triv.models.Question;
+import com.example.guest.triv.services.TriviaService;
 
 import java.util.ArrayList;
 
@@ -17,8 +21,12 @@ import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.Response;
+
+import static android.R.attr.type;
 
 public class QuizActivity extends AppCompatActivity {
+    public static final String TAG = QuizActivity.class.getSimpleName();
     // Private variable declarations
     private static final String CORRECT = "Correct!";
     private static final String INCORRECT = "Try Again";
@@ -51,9 +59,30 @@ public class QuizActivity extends AppCompatActivity {
         incorrectAnswer.add("Perro");
         incorrectAnswer.add("Burrito");
 
+        getRestaurants();
+
         // Instantiates a new instance of Question
         setNewQuestion(selectedCategory, type, difficulty, question, correctAnswer, incorrectAnswer);
     }
+    private void getRestaurants() {
+        final TriviaService triviaService = new TriviaService();
+        triviaService.findQuestions(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    String jsonData = response.body().string();
+                    Log.v(TAG, jsonData);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     public void setNewQuestion(String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswer){
         final Question newQuestion = new Question(category, type, difficulty, question, correctAnswer, incorrectAnswer);
 

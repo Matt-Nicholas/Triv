@@ -10,13 +10,13 @@ public class Question {
     private String mCorrectAnswer;
     private ArrayList<String> mIncorrectAnswers;
 
-    public Question(String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswer){
+    public Question(String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswers){
         this.mCategory = category;
         this.mType = type;
         this.mDifficulty = difficulty;
         this.mQuestion = question;
         this.mCorrectAnswer = correctAnswer;
-        this.mIncorrectAnswers = incorrectAnswer;
+        this.mIncorrectAnswers = incorrectAnswers;
     }
     public String getCategory(){
         return mCategory;
