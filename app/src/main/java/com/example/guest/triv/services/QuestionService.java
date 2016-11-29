@@ -1,4 +1,4 @@
-package com.example.guest.triv;
+package com.example.guest.triv.services;
 
 /**
  * Created by Guest on 11/18/16.

@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,9 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CategoryActivity" />
-        <activity android:name=".QuizActivity" />
-        <activity android:name=".PastQuestionsActivity"></activity>
+        <activity android:name=".ui.CategoryActivity" />
+        <activity android:name=".ui.QuizActivity" />
+        <activity android:name=".ui.PastQuestionsActivity"></activity>
     </application>
 
 </manifest>

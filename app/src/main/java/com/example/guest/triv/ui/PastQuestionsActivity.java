@@ -1,4 +1,4 @@
-package com.example.guest.triv;
+package com.example.guest.triv.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.guest.triv.R;
 
 import java.util.ArrayList;
 

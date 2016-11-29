@@ -1,4 +1,4 @@
-package com.example.guest.triv;
+package com.example.guest.triv.models;
 
 import java.util.ArrayList;
 
