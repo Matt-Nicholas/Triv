@@ -31,6 +31,8 @@ public class QuizActivity extends AppCompatActivity {
     private static final String CORRECT = "Correct!";
     private static final String INCORRECT = "Try Again";
     private ArrayList<String> mPastQuestions = new ArrayList<>();
+    private ArrayList<Question> mQuestions = new ArrayList<>();
+
     //Bind views using ButtKnife
     @Bind(R.id.categoryView) TextView mCategoryView;
     @Bind(R.id.questionView) TextView mQuestionView;
@@ -73,12 +75,7 @@ public class QuizActivity extends AppCompatActivity {
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String jsonData = response.body().string();
-                    Log.v(TAG, jsonData);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                mQuestions = triviaService.processResults(response);
             }
         });
     }
