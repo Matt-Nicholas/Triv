@@ -3,7 +3,6 @@ package com.example.guest.triv.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,16 +13,11 @@ import java.io.IOException;
 import com.example.guest.triv.R;
 import com.example.guest.triv.models.Question;
 import com.example.guest.triv.services.TriviaService;
-
 import java.util.ArrayList;
-
 import java.util.Random;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import okhttp3.Response;
-
-import static android.R.attr.type;
 
 public class QuizActivity extends AppCompatActivity {
     public static final String TAG = QuizActivity.class.getSimpleName();
@@ -60,13 +54,12 @@ public class QuizActivity extends AppCompatActivity {
         incorrectAnswer.add("Toro");
         incorrectAnswer.add("Perro");
         incorrectAnswer.add("Burrito");
-
-        getRestaurants();
+        getQuestions();
 
         // Instantiates a new instance of Question
         setNewQuestion(selectedCategory, type, difficulty, question, correctAnswer, incorrectAnswer);
     }
-    private void getRestaurants() {
+    private void getQuestions() {
         final TriviaService triviaService = new TriviaService();
         triviaService.findQuestions(new Callback() {
             @Override

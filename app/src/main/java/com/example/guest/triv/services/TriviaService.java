@@ -2,14 +2,11 @@ package com.example.guest.triv.services;
 
 import com.example.guest.triv.Constants;
 import com.example.guest.triv.models.Question;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import okhttp3.Callback;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -27,7 +24,6 @@ public class TriviaService {
                 .build();
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.TRIVIA_BASE_URL).newBuilder();
         String url = urlBuilder.build().toString();
-
         Request request = new Request.Builder()
                 .url(url)
                 .build();

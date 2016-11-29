@@ -7,13 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.example.guest.triv.R;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
-import static android.R.attr.category;
 
 public class CategoryActivity extends AppCompatActivity implements View.OnClickListener{
     // Private variable declarations
