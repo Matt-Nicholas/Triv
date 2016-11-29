@@ -1,10 +1,5 @@
 package com.example.guest.triv.models;
 
-import com.example.guest.triv.models.Question;
-
-/**
- * Created by Guest on 11/18/16.
- */
 public class PastQuestion {
     private Question mQuestion;
     private boolean mCorrect;

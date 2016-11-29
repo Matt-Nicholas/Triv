@@ -13,6 +13,8 @@ import com.example.guest.triv.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+import static android.R.attr.category;
+
 public class CategoryActivity extends AppCompatActivity implements View.OnClickListener{
     // Private variable declarations
     private static final String UNDER_CONSTRUCTION = "This category is still under construction";
@@ -32,7 +34,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_category);
         ButterKnife.bind(this);
 
-        // Set on click listeners and execute actions for category buttons
+        // Set on click listeners
         mSportsButton.setOnClickListener(this);
         mEntertainmentButton.setOnClickListener(this);
         mHistoryButton.setOnClickListener(this);
@@ -41,6 +43,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         mGeographyButton.setOnClickListener(this);
         mRandomButton.setOnClickListener(this);
     }
+    // Execute actions depending on which onClick listener is triggered
     @Override
     public void onClick(View v){
         if(v == mSportsButton){

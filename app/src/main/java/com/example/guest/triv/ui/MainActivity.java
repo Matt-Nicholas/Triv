@@ -8,21 +8,17 @@ import android.os.Bundle;
 import com.example.guest.triv.R;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
 
             @Override
             public void run() {
                 // Starts CategoryActivity after set amount of time
-
                 Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
-
                 startActivity(intent);
             }
 

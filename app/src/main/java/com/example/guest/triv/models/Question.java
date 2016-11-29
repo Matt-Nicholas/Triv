@@ -2,11 +2,6 @@ package com.example.guest.triv.models;
 
 import java.util.ArrayList;
 
-/**
- * Created by Matt Nicholas on 11/18/16.
- */
-
-
 public class Question {
     private String mCategory;
     private String mType;
@@ -15,8 +10,6 @@ public class Question {
     private String mCorrectAnswer;
     private ArrayList<String> mIncorrectAnswers;
 
-
-
     public Question(String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswer){
         this.mCategory = category;
         this.mType = type;
@@ -24,9 +17,7 @@ public class Question {
         this.mQuestion = question;
         this.mCorrectAnswer = correctAnswer;
         this.mIncorrectAnswers = incorrectAnswer;
-
     }
-
     public String getCategory(){
         return mCategory;
     }
@@ -45,6 +36,4 @@ public class Question {
     public ArrayList<String> getIncorrectAnswers(){
         return mIncorrectAnswers;
     }
-
-
 }

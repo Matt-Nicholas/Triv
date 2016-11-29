@@ -19,11 +19,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class QuizActivity extends AppCompatActivity {
-
     // Private variable declarations
     private static final String CORRECT = "Correct!";
     private static final String INCORRECT = "Try Again";
-
     private ArrayList<String> mPastQuestions = new ArrayList<>();
     //Bind views using ButtKnife
     @Bind(R.id.categoryView) TextView mCategoryView;
@@ -33,15 +31,11 @@ public class QuizActivity extends AppCompatActivity {
     @Bind(R.id.answerButton2) Button mAnswerButton2;
     @Bind(R.id.answerButton3) Button mAnswerButton3;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         ButterKnife.bind(this);
-
         Intent intent = getIntent();
         String selectedCategory = intent.getStringExtra("category");
 
@@ -57,15 +51,10 @@ public class QuizActivity extends AppCompatActivity {
         incorrectAnswer.add("Perro");
         incorrectAnswer.add("Burrito");
 
-
         // Instantiates a new instance of Question
-
         setNewQuestion(selectedCategory, type, difficulty, question, correctAnswer, incorrectAnswer);
-
     }
-
     public void setNewQuestion(String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswer){
-
         final Question newQuestion = new Question(category, type, difficulty, question, correctAnswer, incorrectAnswer);
 
         // Creates a new random number generator
@@ -77,7 +66,6 @@ public class QuizActivity extends AppCompatActivity {
 
         // Creates a new random int from 0-3
         int randInt = randGen.nextInt(4);
-
 
         // ****** NEEDS TO BE REFACTORED NOT DRY ******
         // Sets text on buttons to possible answers
