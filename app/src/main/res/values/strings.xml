@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Triv</string>
+    <string name="loading_question">Loading&#8230;</string>
 </resources>

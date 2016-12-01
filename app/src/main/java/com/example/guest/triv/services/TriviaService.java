@@ -1,5 +1,7 @@
 package com.example.guest.triv.services;
 
+import android.util.Log;
+
 import com.example.guest.triv.Constants;
 import com.example.guest.triv.models.Question;
 import org.json.JSONArray;
@@ -37,7 +39,7 @@ public class TriviaService {
             String jsonData = response.body().string();
             if (response.isSuccessful()) {
                 JSONObject triviaJSON = new JSONObject(jsonData);
-                JSONArray questionsJSON = triviaJSON.getJSONArray("questions");
+                JSONArray questionsJSON = triviaJSON.getJSONArray("results");
                 for (int i = 0; i < questionsJSON.length(); i++) {
                     JSONObject questionJSON = questionsJSON.getJSONObject(i);
                     String category = questionJSON.getString("category");
@@ -48,7 +50,7 @@ public class TriviaService {
                     ArrayList<String> incorrect_answers = new ArrayList<>();
                     JSONArray incorrect_answersJSON = questionJSON.getJSONArray("incorrect_answers");
                     for (int y = 0; y < incorrect_answersJSON.length(); y++) {
-                        incorrect_answers.add(incorrect_answersJSON.getJSONArray(y).get(0).toString());
+                        incorrect_answers.add(incorrect_answersJSON.get(y).toString());
                     }
                     Question q = new Question(category, type, difficulty, question,
                             correct_answer, incorrect_answers);

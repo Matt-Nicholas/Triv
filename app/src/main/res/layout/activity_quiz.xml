@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Opps! Something went wrong."
+            android:text="@string/loading_question"
             android:id="@+id/questionView"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"

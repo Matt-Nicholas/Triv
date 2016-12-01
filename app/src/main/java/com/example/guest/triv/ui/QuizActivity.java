@@ -3,6 +3,7 @@ package com.example.guest.triv.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -40,25 +41,11 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         ButterKnife.bind(this);
-        Intent intent = getIntent();
-        String selectedCategory = intent.getStringExtra("category");
-
-        // Temporary questions for development only
-        String category = "General Knowledge";
-        String type = "multiple";
-        String difficulty = "easy";
-        String question = "What is the Spanish word for \"donkey\"";
-        String correctAnswer = "Burro";
-        ArrayList<String> incorrectAnswer = new ArrayList<>();
-        incorrectAnswer.add("Caballo");
-        incorrectAnswer.add("Toro");
-        incorrectAnswer.add("Perro");
-        incorrectAnswer.add("Burrito");
+//        Intent intent = getIntent();
+//        String selectedCategory = intent.getStringExtra("category");
         getQuestions();
-
-        // Instantiates a new instance of Question
-        setNewQuestion(selectedCategory, type, difficulty, question, correctAnswer, incorrectAnswer);
     }
+
     private void getQuestions() {
         final TriviaService triviaService = new TriviaService();
         triviaService.findQuestions(new Callback() {
@@ -67,10 +54,17 @@ public class QuizActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call, Response response) {
                 mQuestions = triviaService.processResults(response);
+               QuizActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        setNewQuestion(mQuestions.get(0).getCategory(), mQuestions.get(0).getType(), mQuestions.get(0).getDifficulty(), mQuestions.get(0).getQuestion(), mQuestions.get(0).getCorrectAnswer(), mQuestions.get(0).getIncorrectAnswers());
+                    }
+                });
             }
         });
+
     }
 
     public void setNewQuestion(String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswer){
@@ -172,7 +166,7 @@ public class QuizActivity extends AppCompatActivity {
                     }
                 });
             }else{
-                mAnswerButton3.setText(newQuestion.getIncorrectAnswers().get(3)); // Sets button text to incorrect answer if randInt returns something other than 3
+                mAnswerButton3.setText(newQuestion.getIncorrectAnswers().get(2)); // Sets button text to incorrect answer if randInt returns something other than 3
                 mAnswerButton3.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
