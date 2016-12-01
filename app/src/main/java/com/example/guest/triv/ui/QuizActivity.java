@@ -24,7 +24,7 @@ public class QuizActivity extends AppCompatActivity {
     public static final String TAG = QuizActivity.class.getSimpleName();
     // Private variable declarations
     private static final String CORRECT = "Correct!";
-    private static final String INCORRECT = "Try Again";
+    private static final String INCORRECT = "Wrong!";
     private ArrayList<String> mPastQuestions = new ArrayList<>();
     private ArrayList<Question> mQuestions = new ArrayList<>();
 
@@ -88,6 +88,8 @@ public class QuizActivity extends AppCompatActivity {
                 mAnswerButton0.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
+                        getQuestions();
+
                         Toast.makeText(QuizActivity.this, CORRECT, Toast.LENGTH_SHORT).show();
 //                        PastQuestion newPastQuestion = new PastQuestion(newQuestion, newQuestion.getCorrectAnswer(), true); // Can't pass custom object as Extra?
                         mPastQuestions.add(newQuestion.getQuestion());
@@ -98,12 +100,14 @@ public class QuizActivity extends AppCompatActivity {
                 mAnswerButton0.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
+                        getQuestions();
+
                         Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
 //                        PastQuestion newPastQuestion = new PastQuestion(newQuestion, newQuestion.getCorrectAnswer(), false); // Can't pass custom object as Extra?
-                        mPastQuestions.add(newQuestion.getQuestion());
-                        Intent intent = new Intent(QuizActivity.this, PastQuestionsActivity.class);
-                        intent.putExtra("pastQuestions", mPastQuestions);
-                        startActivity(intent);
+//                        mPastQuestions.add(newQuestion.getQuestion());
+//                        Intent intent = new Intent(QuizActivity.this, PastQuestionsActivity.class);
+//                        intent.putExtra("pastQuestions", mPastQuestions);
+//                        startActivity(intent);
                     }
                 });
             }
@@ -112,6 +116,8 @@ public class QuizActivity extends AppCompatActivity {
                 mAnswerButton1.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
+                        getQuestions();
+
                         Toast.makeText(QuizActivity.this, CORRECT, Toast.LENGTH_SHORT).show();
 //                        PastQuestion newPastQuestion = new PastQuestion(newQuestion, newQuestion.getCorrectAnswer(), true); // Can't pass custom object as Extra?
                         mPastQuestions.add(newQuestion.getQuestion());
@@ -122,12 +128,14 @@ public class QuizActivity extends AppCompatActivity {
                 mAnswerButton1.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
+                        getQuestions();
+
                         Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
 //                        PastQuestion newPastQuestion = new PastQuestion(newQuestion, newQuestion.getCorrectAnswer(), false); // Can't pass custom object as Extra?
-                        mPastQuestions.add(newQuestion.getQuestion());
-                        Intent intent = new Intent(QuizActivity.this, PastQuestionsActivity.class);
-                        intent.putExtra("pastQuestions", mPastQuestions);
-                        startActivity(intent);
+//                        mPastQuestions.add(newQuestion.getQuestion());
+//                        Intent intent = new Intent(QuizActivity.this, PastQuestionsActivity.class);
+//                        intent.putExtra("pastQuestions", mPastQuestions);
+//                        startActivity(intent);
                     }
                 });
             }
@@ -136,6 +144,8 @@ public class QuizActivity extends AppCompatActivity {
                 mAnswerButton2.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
+                        getQuestions();
+
                         Toast.makeText(QuizActivity.this, CORRECT, Toast.LENGTH_SHORT).show();
 //                        PastQuestion newPastQuestion = new PastQuestion(newQuestion, newQuestion.getCorrectAnswer(), true);// Can't pass custom object as Extra?
                         mPastQuestions.add(newQuestion.getQuestion());
@@ -146,12 +156,14 @@ public class QuizActivity extends AppCompatActivity {
                 mAnswerButton2.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
+                        getQuestions();
+
                         Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
 //                        PastQuestion newPastQuestion = new PastQuestion(newQuestion, newQuestion.getCorrectAnswer(), false);// Can't pass custom object as Extra?
-                        mPastQuestions.add(newQuestion.getQuestion());
-                        Intent intent = new Intent(QuizActivity.this, PastQuestionsActivity.class);
-                        intent.putExtra("pastQuestions", mPastQuestions);
-                        startActivity(intent);
+//                        mPastQuestions.add(newQuestion.getQuestion());
+//                        Intent intent = new Intent(QuizActivity.this, PastQuestionsActivity.class);
+//                        intent.putExtra("pastQuestions", mPastQuestions);
+//                        startActivity(intent);
                     }
                 });
             }
@@ -160,6 +172,8 @@ public class QuizActivity extends AppCompatActivity {
                 mAnswerButton3.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
+                        getQuestions();
+
                         Toast.makeText(QuizActivity.this, CORRECT, Toast.LENGTH_SHORT).show();
 //                        PastQuestion newPastQuestion = new PastQuestion(newQuestion, newQuestion.getCorrectAnswer(), true);// Can't pass custom object as Extra?
                         mPastQuestions.add(newQuestion.getQuestion());
@@ -170,12 +184,14 @@ public class QuizActivity extends AppCompatActivity {
                 mAnswerButton3.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v){
+                        getQuestions();
+
                         Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
 //                        PastQuestion newPastQuestion = new PastQuestion(newQuestion, newQuestion.getCorrectAnswer(), false);// Can't pass custom object as Extra?
-                        mPastQuestions.add(newQuestion.getQuestion());
-                        Intent intent = new Intent(QuizActivity.this, PastQuestionsActivity.class);
-                        intent.putExtra("pastQuestions", mPastQuestions);
-                        startActivity(intent);
+//                        mPastQuestions.add(newQuestion.getQuestion());
+//                        Intent intent = new Intent(QuizActivity.this, PastQuestionsActivity.class);
+//                        intent.putExtra("pastQuestions", mPastQuestions);
+//                        startActivity(intent);
                     }
                 });
             }
