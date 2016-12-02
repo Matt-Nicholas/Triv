@@ -1,5 +1,6 @@
 package com.example.guest.triv.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,9 +12,12 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import java.io.IOException;
 import com.example.guest.triv.R;
-import com.example.guest.triv.models.PastQuestion;
+import com.example.guest.triv.models.Game;
 import com.example.guest.triv.models.Question;
 import com.example.guest.triv.services.TriviaService;
+
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -29,6 +33,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<String> mPastQuestions = new ArrayList<>();
     private ArrayList<Question> mQuestions = new ArrayList<>();
     List<String> allAnswers = new ArrayList<>();
+    private Game game;
 
     //Bind views using ButtKnife
     @Bind(R.id.categoryView) TextView mCategoryView;
@@ -52,6 +57,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
 //        Intent intent = getIntent();
 //        String selectedCategory = intent.getStringExtra("category");
+        game = new Game("random");
         getQuestions();
     }
       // Execute actions depending on which onClick listener is triggered
@@ -64,10 +70,12 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(QuizActivity.this, CORRECT, Toast.LENGTH_SHORT).show();
                 mAnswerButton0.setBackgroundColor(0xff00ff00);
                 getQuestions();
+
             }else{
-                getQuestions();
+                game.addIncorrectlyAnsweredQuestion(mQuestions.get(0));
                 Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
                 mAnswerButton0.setBackgroundColor(0xffff0000);
+                getQuestions();
             }
         } else if(v == mAnswerButton1){
             selectedAnswer = (String) mAnswerButton1.getText();
@@ -76,9 +84,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 mAnswerButton1.setBackgroundColor(0xff00ff00);
                 getQuestions();
             }else{
-                getQuestions();
+                game.addIncorrectlyAnsweredQuestion(mQuestions.get(0));
                 Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
                 mAnswerButton1.setBackgroundColor(0xffff0000);
+                getQuestions();
             }
         }else if(v == mAnswerButton2){
             selectedAnswer = (String) mAnswerButton2.getText();
@@ -87,21 +96,29 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 mAnswerButton2.setBackgroundColor(0xff00ff00);
                 getQuestions();
             }else{
-                getQuestions();
+                game.addIncorrectlyAnsweredQuestion(mQuestions.get(0));
                 Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
                 mAnswerButton2.setBackgroundColor(0xffff0000);
+                getQuestions();
             }
         }else if(v == mAnswerButton3){
             selectedAnswer = (String) mAnswerButton3.getText();
             if(answerIsCorrect(selectedAnswer, 3)){
                 Toast.makeText(QuizActivity.this, CORRECT, Toast.LENGTH_SHORT).show();
                 mAnswerButton3.setBackgroundColor(0xff00ff00);
-                getQuestions();
+
             }else{
-                getQuestions();
+                game.addIncorrectlyAnsweredQuestion(mQuestions.get(0));
                 Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
                 mAnswerButton3.setBackgroundColor(0xffff0000);
+                getQuestions();
             }
+        }
+        if(game.getIncorrectlyAnsweredQuestions().size() >= 5){
+
+            Intent intent = new Intent(QuizActivity.this, GameOverActivity.class);
+            intent.putExtra("game", Parcels.wrap(game));
+            startActivity(intent);
         }
     }
     public boolean answerIsCorrect(String a, int i){
@@ -163,8 +180,3 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 }
 
 
-//    PastQuestion newPastQuestion = new PastQuestion(newQuestion, newQuestion.getCorrectAnswer(), false); // Can't pass custom object as Extra?
-//                        mPastQuestions.add(newQuestion.getQuestion());
-//                        Intent intent = new Intent(QuizActivity.this, PastQuestionsActivity.class);
-//                        intent.putExtra("pastQuestions", mPastQuestions);
-//                        startActivity(intent);

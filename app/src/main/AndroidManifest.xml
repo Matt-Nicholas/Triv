@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".ui.CategoryActivity" />
         <activity android:name=".ui.QuizActivity" />
-        <activity android:name=".ui.PastQuestionsActivity"></activity>
+        <activity android:name=".ui.GameOverActivity"></activity>
     </application>
 
 </manifest>
