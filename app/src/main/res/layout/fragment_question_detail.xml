@@ -8,7 +8,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/_colorPrimary">
+        android:background="@color/_colorAccent">
 
         <ImageView
             android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                 android:layout_alignTop="@+id/categoryTextView"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/_colorAccent"
+                android:textColor="@color/_colorPrimaryDark"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -75,31 +75,54 @@
                     android:textColor="@color/_colorPrimaryDark"
                     android:textSize="15sp"
                     android:layout_marginBottom="10dp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Correct Answer"
-                    android:id="@+id/correctAnswerTextView"
                     android:drawablePadding="4dp"
                     android:textColor="@color/_colorPrimaryDark"
                     android:textSize="15sp"
-                    android:textStyle="bold"
                     android:layout_marginBottom="10dp"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Answer"
+                    android:text="correct answer"
+                    android:id="@+id/correctAnswerTextView"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/_colorPrimary"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="You Answered"
+                    android:drawablePadding="4dp"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/_colorPrimaryDark"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="wrong answer"
                     android:drawablePadding="4dp"
                     android:id="@+id/incorrectAnswerTextView"
-                    android:textColor="@color/_colorPrimaryDark"
                     android:textSize="15sp"
-                    android:textStyle="bold"
                     android:layout_marginBottom="10dp"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:textColor="#5f0000"
+                    android:textStyle="normal" />
 
             </LinearLayout>
 
@@ -109,7 +132,7 @@
                 android:text="Learn More"
                 android:id="@+id/learnMoreButton"
                 android:layout_alignParentBottom="true"
-                android:background="@color/_colorAccent"
+                android:background="@color/_icons"
                 android:textColor="@color/_colorPrimaryDark"
                 android:textSize="15sp" />
         </RelativeLayout>

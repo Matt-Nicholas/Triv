@@ -56,12 +56,11 @@ public class QuestionDetailFragment extends Fragment implements View.OnClickList
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_question_detail, container, false);
         ButterKnife.bind(this, view);
-        String c = "Category\n" + mQuestion.getCategory();
+        String c = "Category:\n" + mQuestion.getCategory();
         mCategoryLabel.setText(c);
         mDifficultyLabel.setText(mQuestion.getDifficulty());
         mQuestionLabel.setText(mQuestion.getQuestion());
-        String correctAns = "Correct Ans:\n" + mQuestion.getCorrectAnswer();
-        mCorrectAnswerLabel.setText(correctAns);
+        mCorrectAnswerLabel.setText(mQuestion.getCorrectAnswer());
         mIncorrectAnswerLabel.setText("wrong answer");
         mLearnMoreButton.setOnClickListener(this);
         return view;
