@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,8 +15,9 @@
         android:id="@+id/quizLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,7 +39,8 @@
             android:id="@+id/categoryView"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/_primaryText"
-            android:typeface="monospace" />
+            android:typeface="monospace"
+            android:textSize="18sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -65,7 +67,7 @@
             android:typeface="monospace"
             android:textColor="@color/_primaryText"
             android:background="@color/_icons"
-            android:layout_marginBottom="15dp" />
+            android:layout_marginBottom="10dp" />
 
         <Button
             android:layout_width="match_parent"
@@ -78,7 +80,7 @@
             android:typeface="monospace"
             android:textColor="@color/_primaryText"
             android:background="@color/_icons"
-            android:layout_marginBottom="15dp" />
+            android:layout_marginBottom="10dp" />
 
         <Button
             android:layout_width="match_parent"
@@ -91,7 +93,7 @@
             android:typeface="monospace"
             android:textColor="@color/_primaryText"
             android:background="@color/_icons"
-            android:layout_marginBottom="15dp" />
+            android:layout_marginBottom="10dp" />
 
         <Button
             android:layout_width="match_parent"
@@ -104,7 +106,7 @@
             android:typeface="monospace"
             android:textColor="@color/_primaryText"
             android:background="@color/_icons"
-            android:layout_marginBottom="15dp" />
+            android:layout_marginBottom="10dp" />
 
     </LinearLayout>
 </RelativeLayout>

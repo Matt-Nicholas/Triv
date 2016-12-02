@@ -105,7 +105,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     public boolean answerIsCorrect(String a, int i){
-        if (allAnswers.get(i).equals(a)){
+        if (mQuestions.get(0).getCorrectAnswer().equals(a)){
             return true;
         }
         return false;
@@ -132,7 +132,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void setNewQuestion(String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswer){
-
+        Log.d("CORRECT ANSWER", correctAnswer);
         // Make a copy of incorrect Answers array list
         allAnswers = new ArrayList<>(incorrectAnswer);
         final Question newQuestion = new Question(category, type, difficulty, question, correctAnswer, incorrectAnswer);
