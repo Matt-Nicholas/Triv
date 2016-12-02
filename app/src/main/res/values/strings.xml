@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Triv</string>
     <string name="loading_question">Loading&#8230;</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

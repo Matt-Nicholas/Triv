@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.guest.triv">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +21,8 @@
         </activity>
         <activity android:name=".ui.CategoryActivity" />
         <activity android:name=".ui.QuizActivity" />
-        <activity android:name=".ui.GameOverActivity"></activity>
+        <activity android:name=".ui.GameOverActivity" />
+        <activity android:name=".ui.QuestionDetailActivity"></activity>
     </application>
 
 </manifest>
