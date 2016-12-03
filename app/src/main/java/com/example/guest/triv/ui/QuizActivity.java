@@ -106,6 +106,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             if(answerIsCorrect(selectedAnswer, 3)){
                 Toast.makeText(QuizActivity.this, CORRECT, Toast.LENGTH_SHORT).show();
                 mAnswerButton3.setBackgroundColor(0xff00ff00);
+                getQuestions();
 
             }else{
                 game.addIncorrectlyAnsweredQuestion(mQuestions.get(0));
