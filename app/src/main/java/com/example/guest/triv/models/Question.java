@@ -20,6 +20,9 @@ public class Question {
     private ArrayList<String> mIncorrectAnswers;
 
 
+
+    private String incorrectGuess;
+
     public Question(){}
     // CONSTRUCTOR
     public Question(String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswers){
@@ -49,4 +52,8 @@ public class Question {
     public ArrayList<String> getIncorrectAnswers(){
         return mIncorrectAnswers;
     }
+    public String getIncorrectGuess() { return incorrectGuess; }
+
+    //SETTERS
+    public void setIncorrectGuess(String incorrectGuess) {this.incorrectGuess = incorrectGuess; }
 }

@@ -70,8 +70,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(QuizActivity.this, CORRECT, Toast.LENGTH_SHORT).show();
                 mAnswerButton0.setBackgroundColor(0xff00ff00);
                 getQuestions();
-
             }else{
+                mQuestions.get(0).setIncorrectGuess(mAnswerButton0.getText().toString());
                 game.addIncorrectlyAnsweredQuestion(mQuestions.get(0));
                 Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
                 mAnswerButton0.setBackgroundColor(0xffff0000);
@@ -84,6 +84,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 mAnswerButton1.setBackgroundColor(0xff00ff00);
                 getQuestions();
             }else{
+                mQuestions.get(0).setIncorrectGuess(mAnswerButton1.getText().toString());
                 game.addIncorrectlyAnsweredQuestion(mQuestions.get(0));
                 Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
                 mAnswerButton1.setBackgroundColor(0xffff0000);
@@ -96,6 +97,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 mAnswerButton2.setBackgroundColor(0xff00ff00);
                 getQuestions();
             }else{
+                mQuestions.get(0).setIncorrectGuess(mAnswerButton2.getText().toString());
                 game.addIncorrectlyAnsweredQuestion(mQuestions.get(0));
                 Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
                 mAnswerButton2.setBackgroundColor(0xffff0000);
@@ -109,6 +111,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 getQuestions();
 
             }else{
+                mQuestions.get(0).setIncorrectGuess(mAnswerButton3.getText().toString());
                 game.addIncorrectlyAnsweredQuestion(mQuestions.get(0));
                 Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
                 mAnswerButton3.setBackgroundColor(0xffff0000);
@@ -116,7 +119,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         if(game.getIncorrectlyAnsweredQuestions().size() >= 5){
-
             Intent intent = new Intent(QuizActivity.this, GameOverActivity.class);
             intent.putExtra("game", Parcels.wrap(game));
             startActivity(intent);

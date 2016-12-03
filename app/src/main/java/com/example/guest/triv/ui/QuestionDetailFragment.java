@@ -58,10 +58,23 @@ public class QuestionDetailFragment extends Fragment implements View.OnClickList
         ButterKnife.bind(this, view);
         String c = "Category:\n" + mQuestion.getCategory();
         mCategoryLabel.setText(c);
-        mDifficultyLabel.setText(mQuestion.getDifficulty());
+        String difficulty = mQuestion.getDifficulty();
+        switch (difficulty){
+            case "easy": mDifficultyLabel.setTextColor(0xFF00CC00);
+                break;
+            case "medium":  mDifficultyLabel.setTextColor(0xFFCCCC00);
+                break;
+            case "hard":  mDifficultyLabel.setTextColor(0xFFCC0000);
+                break;
+        }
+        difficulty = "Difficulty:\n" + difficulty;
+        mDifficultyLabel.setText(difficulty);
+
+
         mQuestionLabel.setText(mQuestion.getQuestion());
+
         mCorrectAnswerLabel.setText(mQuestion.getCorrectAnswer());
-        mIncorrectAnswerLabel.setText("wrong answer");
+        mIncorrectAnswerLabel.setText(mQuestion.getIncorrectGuess());
         mLearnMoreButton.setOnClickListener(this);
         return view;
     }
