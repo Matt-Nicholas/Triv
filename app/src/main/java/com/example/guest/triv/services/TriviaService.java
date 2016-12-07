@@ -19,13 +19,19 @@ import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer;
 import se.akerfeldt.okhttp.signpost.SigningInterceptor;
 import okhttp3.Call;
 
+import static android.R.attr.category;
+import static android.R.attr.id;
+
 public class TriviaService {
-    public static void findQuestions(Callback callback){
-        OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer("","");
+    public static void findQuestions(int categoryId, Callback callback){
+
         OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new SigningInterceptor(consumer))
                 .build();
+
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.TRIVIA_BASE_URL).newBuilder();
+        if(categoryId > 0){
+            urlBuilder.addQueryParameter("category", Integer.toString(categoryId));
+        }
         String url = urlBuilder.build().toString();
         Request request = new Request.Builder()
                 .url(url)
@@ -33,6 +39,9 @@ public class TriviaService {
         Call call = client.newCall(request);
         call.enqueue(callback);
     }
+
+
+
     public ArrayList<Question> processResults(Response response){
 
         ArrayList<Question> questions = new ArrayList<>();

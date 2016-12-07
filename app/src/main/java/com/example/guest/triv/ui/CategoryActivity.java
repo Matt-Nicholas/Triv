@@ -43,33 +43,89 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v){
         if(v == mSportsButton){
-            Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
-        }
-        if(v == mEntertainmentButton){
-            Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
-        }
-        if(v == mHistoryButton){
-            Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
-        }
-        if(v == mPoliticsButton){
-            Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
-        }
-        if(v == mAnimalsButton){
-            Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
-        }
-        if(v == mGeographyButton){
-            Toast.makeText(CategoryActivity.this, UNDER_CONSTRUCTION, Toast.LENGTH_SHORT).show();
-        }
-        if(v == mRandomButton){
             Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
-
             Handler mHandler = new Handler();
             mHandler.postDelayed(new Runnable() {
-
                 @Override
                 public void run() {
-                    // Starts CategoryActivity after set amount of time
-                    // Will eventually start after api call is complete
+                    String category = (String) mSportsButton.getText();
+                    Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
+                    intent.putExtra("category", category);
+                    startActivity(intent);
+                }
+
+            }, 2000L);        }
+        if(v == mEntertainmentButton){
+            Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
+            Handler mHandler = new Handler();
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    String category = (String) mEntertainmentButton.getText();
+                    Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
+                    intent.putExtra("category", category);
+                    startActivity(intent);
+                }
+
+            }, 2000L);        }
+        if(v == mHistoryButton){
+            Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
+            Handler mHandler = new Handler();
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    String category = (String) mHistoryButton.getText();
+                    Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
+                    intent.putExtra("category", category);
+                    startActivity(intent);
+                }
+
+            }, 2000L);        }
+        if(v == mPoliticsButton){
+            Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
+            Handler mHandler = new Handler();
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    String category = (String) mPoliticsButton.getText();
+                    Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
+                    intent.putExtra("category", category);
+                    startActivity(intent);
+                }
+
+            }, 2000L);        }
+        if(v == mAnimalsButton){
+            Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
+            Handler mHandler = new Handler();
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    String category = (String) mAnimalsButton.getText();
+                    Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
+                    intent.putExtra("category", category);
+                    startActivity(intent);
+                }
+
+            }, 2000L);        }
+        if(v == mGeographyButton){
+            Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
+            Handler mHandler = new Handler();
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    String category = (String) mGeographyButton.getText();
+                    Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
+                    intent.putExtra("category", category);
+                    startActivity(intent);
+                }
+
+            }, 2000L);        }
+        if(v == mRandomButton){
+            Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
+            Handler mHandler = new Handler();
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
                     String category = (String) mRandomButton.getText();
                     Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
                     intent.putExtra("category", category);

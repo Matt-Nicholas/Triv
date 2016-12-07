@@ -55,9 +55,15 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         mAnswerButton2.setOnClickListener(this);
         mAnswerButton3.setOnClickListener(this);
 
-//        Intent intent = getIntent();
-//        String selectedCategory = intent.getStringExtra("category");
-        game = new Game("random");
+        Intent intent = getIntent();
+        String selectedCategory = intent.getStringExtra("category");
+        Log.d("Matt 1", selectedCategory);
+        game = new Game(selectedCategory);
+        if(!selectedCategory.equals("RANDOM")){
+            Log.d("Matt 1", "hereeeee");
+
+            game.setCategoryId(selectedCategory);
+        }
         getQuestions();
     }
       // Execute actions depending on which onClick listener is triggered
@@ -133,7 +139,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
     private void getQuestions() {
         final TriviaService triviaService = new TriviaService();
-        triviaService.findQuestions(new Callback() {
+        triviaService.findQuestions(game.getCategoryId(), new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();

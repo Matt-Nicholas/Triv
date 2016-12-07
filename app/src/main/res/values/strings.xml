@@ -5,13 +5,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="choose_category">Choose A Category</string>
-    <string name="category_sports">Sports</string>
-    <string name="category_entertainment">Entertainment</string>
-    <string name="category_history">History</string>
-    <string name="category_politics">Politics</string>
-    <string name="category_animals">Animals</string>
-    <string name="category_geography">Geography</string>
-    <string name="category_random">Random</string>
+    <string name="category_sports">SPORTS</string>
+    <string name="category_entertainment">ART</string>
+    <string name="category_history">HISTORY</string>
+    <string name="category_politics">POLITICS</string>
+    <string name="category_animals">ANIMALS</string>
+    <string name="category_geography">GEOGRAPHY</string>
+    <string name="category_random">RANDOM</string>
     <string name="title">triv</string>
     <string name="category_label">Category</string>
     <string name="difficulty_label">Difficulty</string>
