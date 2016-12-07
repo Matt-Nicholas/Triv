@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Choose A Category"
+            android:text="@string/choose_category"
             android:id="@+id/textView2"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
@@ -34,7 +34,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sports"
+            android:text="@string/category_sports"
             android:id="@+id/sportsButton"
             android:layout_gravity="center_horizontal"
             android:background="@color/_divider"
@@ -46,7 +46,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Entertainment"
+            android:text="@string/category_entertainment"
             android:id="@+id/entertainmentButton"
             android:layout_gravity="center_horizontal"
             android:background="@color/_divider"
@@ -58,7 +58,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="History"
+            android:text="@string/category_history"
             android:id="@+id/historyButton"
             android:layout_gravity="center_horizontal"
             android:background="@color/_divider"
@@ -70,7 +70,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Politics"
+            android:text="@string/category_politics"
             android:id="@+id/politicsButton"
             android:layout_gravity="center_horizontal"
             android:background="@color/_divider"
@@ -82,7 +82,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Animals"
+            android:text="@string/category_animals"
             android:id="@+id/animalsButton"
             android:layout_gravity="center_horizontal"
             android:background="@color/_divider"
@@ -94,7 +94,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Geography"
+            android:text="@string/category_geography"
             android:id="@+id/geographyButton"
             android:layout_gravity="center_horizontal"
             android:background="@color/_divider"
@@ -106,7 +106,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Random"
+            android:text="@string/category_random"
             android:id="@+id/randomButton"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"

@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Category"
+                android:text="@string/category_label"
                 android:id="@+id/categoryTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -40,7 +40,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="difficulty"
+                android:text="@string/difficulty_label"
                 android:id="@+id/difficultyTextView"
                 android:layout_alignTop="@+id/categoryTextView"
                 android:layout_alignParentRight="true"
@@ -69,7 +69,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Question"
+                    android:text="@string/question_label"
                     android:id="@+id/questionTextView"
                     android:drawablePadding="4dp"
                     android:textColor="@color/_colorPrimaryDark"
@@ -81,7 +81,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Correct Answer"
+                    android:text="@string/correct_answer"
                     android:drawablePadding="4dp"
                     android:textColor="@color/_colorPrimaryDark"
                     android:textSize="15sp"
@@ -92,7 +92,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="correct answer"
+                    android:text=""
                     android:id="@+id/correctAnswerTextView"
                     android:drawablePadding="4dp"
                     android:textColor="@color/_colorPrimary"
@@ -104,7 +104,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="You Answered"
+                    android:text="@string/incorrect_answer"
                     android:drawablePadding="4dp"
                     android:textSize="15sp"
                     android:layout_marginBottom="10dp"
@@ -115,7 +115,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="wrong answer"
+                    android:text=""
                     android:drawablePadding="4dp"
                     android:id="@+id/incorrectAnswerTextView"
                     android:textSize="15sp"
@@ -129,7 +129,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Learn More"
+                android:text="@string/learn_more"
                 android:id="@+id/learnMoreButton"
                 android:layout_alignParentBottom="true"
                 android:background="@color/_icons"

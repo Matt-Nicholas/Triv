@@ -32,10 +32,7 @@ public class QuestionDetailFragment extends Fragment implements View.OnClickList
     @Bind(R.id.correctAnswerTextView) TextView mCorrectAnswerLabel;
     @Bind(R.id.incorrectAnswerTextView) TextView mIncorrectAnswerLabel;
     @Bind(R.id.learnMoreButton)Button mLearnMoreButton;
-
     private Question mQuestion;
-
-
     public static QuestionDetailFragment newInstance(Question question) {
         QuestionDetailFragment questionDetailFragment = new QuestionDetailFragment();
         Bundle args = new Bundle();
@@ -69,10 +66,7 @@ public class QuestionDetailFragment extends Fragment implements View.OnClickList
         }
         difficulty = "Difficulty:\n" + difficulty;
         mDifficultyLabel.setText(difficulty);
-
-
         mQuestionLabel.setText(mQuestion.getQuestion());
-
         mCorrectAnswerLabel.setText(mQuestion.getCorrectAnswer());
         mIncorrectAnswerLabel.setText(mQuestion.getIncorrectGuess());
         mLearnMoreButton.setOnClickListener(this);
