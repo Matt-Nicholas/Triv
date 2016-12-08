@@ -18,10 +18,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // Starts CategoryActivity after set amount of time
-                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
 
-        }, 3000L);
+        }, 2000L);
     }
 }
