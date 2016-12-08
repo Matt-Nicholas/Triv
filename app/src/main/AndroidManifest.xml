@@ -9,26 +9,31 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-       >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ui.MainActivity"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.CategoryActivity"
-                  android:screenOrientation="portrait"/>
-        <activity android:name=".ui.QuizActivity"
-                  android:screenOrientation="portrait"/>
-        <activity android:name=".ui.GameOverActivity"
-                  android:screenOrientation="portrait"/>
-        <activity android:name=".ui.QuestionDetailActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.CategoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.QuizActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.GameOverActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.QuestionDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.CreateAccountActivity" />
+        <activity android:name=".ui.LoginActivity"></activity>
     </application>
 
 </manifest>
