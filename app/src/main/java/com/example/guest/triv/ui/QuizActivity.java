@@ -1,16 +1,16 @@
 package com.example.guest.triv.ui;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import okhttp3.Call;
-import okhttp3.Callback;
-import java.io.IOException;
+
+import com.example.guest.triv.Constants;
 import com.example.guest.triv.R;
 import com.example.guest.triv.models.Game;
 import com.example.guest.triv.models.Question;
@@ -18,11 +18,15 @@ import com.example.guest.triv.services.TriviaService;
 
 import org.parceler.Parcels;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.Response;
 
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener{
@@ -34,6 +38,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<Question> mQuestions = new ArrayList<>();
     List<String> allAnswers = new ArrayList<>();
     private Game game;
+    private SharedPreferences mSharedPreferences;
+    private String mCategory;
+
 
     //Bind views using ButtKnife
     @Bind(R.id.categoryView) TextView mCategoryView;
@@ -49,20 +56,18 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_quiz);
         ButterKnife.bind(this);
 
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mCategory = mSharedPreferences.getString(Constants.CHOOSEN_CATEGORY, null);
+
         // Set on click listeners
         mAnswerButton0.setOnClickListener(this);
         mAnswerButton1.setOnClickListener(this);
         mAnswerButton2.setOnClickListener(this);
         mAnswerButton3.setOnClickListener(this);
 
-        Intent intent = getIntent();
-        String selectedCategory = intent.getStringExtra("category");
-        Log.d("Matt 1", selectedCategory);
-        game = new Game(selectedCategory);
-        if(!selectedCategory.equals("RANDOM")){
-            Log.d("Matt 1", "hereeeee");
-
-            game.setCategoryId(selectedCategory);
+        game = new Game(mCategory);
+        if(!mCategory.equals("RANDOM")){
+            game.setCategoryId(mCategory);
         }
         getQuestions();
     }
