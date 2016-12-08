@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "775744340007",
+    "firebase_url": "https://triv-97c75.firebaseio.com",
+    "project_id": "triv-97c75",
+    "storage_bucket": "triv-97c75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775744340007:android:1a51b3c00f8a5204",
+        "android_client_info": {
+          "package_name": "com.example.guest.triv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775744340007-cbaps45t1tfi00inono8rvn1q7g7qe6c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.guest.triv",
+            "certificate_hash": "4B0B2DFC29D345326E22B84BFD08156BB10DDA97"
+          }
+        },
+        {
+          "client_id": "775744340007-lblsh96ieen83r9rnlbmo2pa5h8hgtj1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVKezi2cdpYwrOBzsXokKPf0AIEfynikg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "775744340007-lblsh96ieen83r9rnlbmo2pa5h8hgtj1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
