@@ -9,21 +9,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.guest.triv.Constants;
 import com.example.guest.triv.R;
 import com.example.guest.triv.models.Game;
 import com.example.guest.triv.models.Question;
 import com.example.guest.triv.services.TriviaService;
-
 import org.parceler.Parcels;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import okhttp3.Call;
@@ -35,7 +30,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     // Private variable declarations
     private static final String CORRECT = "Correct!";
     private static final String INCORRECT = "Wrong!";
-    private ArrayList<String> mPastQuestions = new ArrayList<>();
     private ArrayList<Question> mQuestions = new ArrayList<>();
     List<String> allAnswers = new ArrayList<>();
     private Game game;
@@ -126,16 +120,16 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 mAnswerButton3.setBackgroundColor(0xffff0000);
             }
         }
-        if(game.getNumOfCoins() == 0){ // Game Over
+
+        if(game.getNumOfCoins() == 0){  // GAME OVER
             Intent intent = new Intent(QuizActivity.this, GameOverActivity.class);
             intent.putExtra("game", Parcels.wrap(game)); // Passes current game to the game over activity
+            //TODO ADD SCORE TO FIREBASE IF HIGHER THAN CURRENT HIGH SCORE
             startActivity(intent);
-        }else{ // Still Alive
+        }else{ // STILL PLAYING
             Log.d("MATT SCORE ****  ", Integer.toString(game.getScore()));
             Log.d("MATT STREAK ****  ", Integer.toString(game.getCorrectAnswerStreak()));
             Log.d("MATT COINS ****  ", Integer.toString(game.getNumOfCoins()));
-            mCoinCount.setText(game.getNumOfCoins());
-            mCurrentScore.setText(game.getScore());
             getQuestions();
         }
     }
@@ -166,7 +160,11 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    // UPDATE DISPLAY
     public void setNewQuestion(String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswer){
+
+        mCoinCount.setText(" x " + game.getNumOfCoins());
+        mCurrentScore.setText(Integer.toString(game.getScore()));
         // Make a copy of incorrect Answers array list
         allAnswers = new ArrayList<>(incorrectAnswer);
         final Question newQuestion = new Question(category, type, difficulty, question, correctAnswer, incorrectAnswer);

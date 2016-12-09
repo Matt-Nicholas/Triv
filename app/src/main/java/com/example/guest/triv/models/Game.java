@@ -17,7 +17,7 @@ public class Game {
         mCategory = category;
     }
 
-    // empty constructor needed by the Parceler library
+    // Empty constructor needed by the Parceler library
     public Game(){}
 
 

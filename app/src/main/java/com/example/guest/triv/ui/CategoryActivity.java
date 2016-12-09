@@ -13,12 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.example.guest.triv.Constants;
 import com.example.guest.triv.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -47,8 +45,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_category);
         ButterKnife.bind(this);
 
-
-
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
 
@@ -60,7 +56,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 if (user != null) {
                     getSupportActionBar().setTitle("Welcome, " + user.getDisplayName() + "!");
                 } else {
-
                 }
             }
         };

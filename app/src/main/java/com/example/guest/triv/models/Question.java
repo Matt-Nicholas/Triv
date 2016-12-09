@@ -1,12 +1,6 @@
 package com.example.guest.triv.models;
 
-
-
-
-
-
 import org.parceler.Parcel;
-
 import java.util.ArrayList;
 
 @Parcel
@@ -20,7 +14,6 @@ public class Question {
     private ArrayList<String> mIncorrectAnswers;
     private String incorrectGuess;
 
-    public Question(){}
     // CONSTRUCTOR
     public Question(String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswers){
         this.mCategory = category;
@@ -30,6 +23,9 @@ public class Question {
         this.mCorrectAnswer = correctAnswer;
         this.mIncorrectAnswers = incorrectAnswers;
     }
+    // Empty constructor needed by the Parceler library
+    public Question(){}
+
     //GETTERS
     public String getCategory(){
         return mCategory;

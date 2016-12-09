@@ -1,20 +1,15 @@
 package com.example.guest.triv.ui;
 
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import com.example.guest.triv.R;
 import com.example.guest.triv.adapters.QuestionListAdapter;
 import com.example.guest.triv.models.Game;
 import com.example.guest.triv.models.Question;
-
 import org.parceler.Parcels;
-
 import java.util.ArrayList;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -32,8 +27,7 @@ public class GameOverActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_gameover);
             ButterKnife.bind(this);
-
-            Game game = (Game) Parcels.unwrap(getIntent().getParcelableExtra("game"));
+            Game game = Parcels.unwrap(getIntent().getParcelableExtra("game"));
             questions = new ArrayList<>(game.getIncorrectlyAnsweredQuestions());
         mAdapter = new QuestionListAdapter(getApplicationContext(), questions);
         mRecyclerView.setAdapter(mAdapter);

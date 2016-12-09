@@ -1,7 +1,6 @@
 package com.example.guest.triv.ui;
 
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,16 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.example.guest.triv.R;
 import com.example.guest.triv.models.Question;
-
-
 import org.parceler.Parcels;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,7 +40,6 @@ public class QuestionDetailFragment extends Fragment implements View.OnClickList
         mQuestion = Parcels.unwrap(getArguments().getParcelable("question"));
 
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
