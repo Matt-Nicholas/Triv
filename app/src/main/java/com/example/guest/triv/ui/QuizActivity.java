@@ -42,7 +42,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private SharedPreferences mSharedPreferences;
     private String mCategory;
     private String mUser;
-    private DatabaseReference highScoreRef;
+    private DatabaseReference mHighScoreReference;
 
     //Bind views using ButtKnife
     @Bind(R.id.categoryView) TextView mCategoryView;
@@ -91,7 +91,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             if(answerIsCorrect(selectedAnswer)){ // CORRECT ANSWER
                 game.correctAnswer(mQuestions.get(0).getDifficulty());// Adds one to streak for a correct answer
                 mAnswerButton0.setBackgroundColor(0xff00ff00); // sets button color to green to show correct answer
-                getQuestions(); // Gets a new question from the api and replaces the text views with the new info
+
             }else{ // INCORRECT ANSWER
                 mQuestions.get(0).setIncorrectGuess(mAnswerButton0.getText().toString());
                 game.incorrectAnswer(mQuestions.get(0));// Adds the current question to incorrectly answered questions and Sets streak back to zero
@@ -138,7 +138,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("MATT SCORE ****  ", Integer.toString(game.getScore()));
             Log.d("MATT STREAK ****  ", Integer.toString(game.getCorrectAnswerStreak()));
             Log.d("MATT COINS ****  ", Integer.toString(game.getNumOfCoins()));
-            getQuestions();
+            getQuestions(); // Gets a new question from the api and replaces the text views with the new info
         }
     }
     public boolean answerIsCorrect(String a){
@@ -171,10 +171,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     //Create HighScore object and save it to firebase
     public void saveScore(){
         HighScore hs= new HighScore(game.getScore(), mUser, game.getCategory());
-        highScoreRef = FirebaseDatabase
+        mHighScoreReference = FirebaseDatabase
                 .getInstance()
                 .getReference(Constants.FIREBASE_CHILD_HIGH_SCORES);
-        highScoreRef.push().setValue(hs);
+        mHighScoreReference.push().setValue(hs);
         Toast.makeText(QuizActivity.this, "New High Score!", Toast.LENGTH_SHORT).show();
     }
 

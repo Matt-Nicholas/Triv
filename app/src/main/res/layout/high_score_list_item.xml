@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_hs_username"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="user name"
+            android:textColor="@color/_primaryText"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="category"
+            android:id="@+id/tv_hs_category"
+            android:layout_below="@+id/tv_hs_username"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textStyle="italic"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="score"
+                android:id="@+id/tv_hs_score"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/_primaryText"/>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -121,7 +122,8 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v){
         if(v == mHighScoreButton){
-            Intent intent = new Intent(CategoryActivity.this, HighScoreActivity.class);
+            Log.d("MATT ** ", " clicked");
+            Intent intent = new Intent(CategoryActivity.this, HighScoreListActivity.class);
             startActivity(intent);
         }
 

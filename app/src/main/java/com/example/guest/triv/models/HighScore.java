@@ -15,31 +15,32 @@ public class HighScore {
         this.mUserName = mUserName;
         this.mCategory = mCategory;
     }
+    public HighScore(){}
 
 
 
     // GETTERS and SETTERS
-    public int getmScore() {
+    public int getScore() {
         return mScore;
     }
 
-    public void setmScore(int mScore) {
+    public void setScore(int mScore) {
         this.mScore = mScore;
     }
 
-    public String getmUserName() {
+    public String getUserName() {
         return mUserName;
     }
 
-    public void setmUserName(String mUserName) {
+    public void setUserName(String mUserName) {
         this.mUserName = mUserName;
     }
 
-    public String getmCategory() {
+    public String getCategory() {
         return mCategory;
     }
 
-    public void setmCategory(String mCategory) {
+    public void setCategory(String mCategory) {
         this.mCategory = mCategory;
     }
 }
