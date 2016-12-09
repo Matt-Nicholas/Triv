@@ -25,7 +25,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.QuizActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme"/>
         <activity
             android:name=".ui.GameOverActivity"
             android:screenOrientation="portrait" />

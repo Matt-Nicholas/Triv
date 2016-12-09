@@ -50,6 +50,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.answerButton1) Button mAnswerButton1;
     @Bind(R.id.answerButton2) Button mAnswerButton2;
     @Bind(R.id.answerButton3) Button mAnswerButton3;
+    @Bind(R.id.tv_coin_count) TextView mCoinCount;
+    @Bind(R.id.tv_score) TextView mCurrentScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +67,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         mAnswerButton1.setOnClickListener(this);
         mAnswerButton2.setOnClickListener(this);
         mAnswerButton3.setOnClickListener(this);
-
         game = new Game(mCategory);
         if(!mCategory.equals("RANDOM")){
             game.setCategoryId(mCategory);
@@ -76,6 +77,13 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v){
         String selectedAnswer;
+
+        //Disable click listener for all buttons until new question is loaded
+        mAnswerButton0.setClickable(false);
+        mAnswerButton1.setClickable(false);
+        mAnswerButton2.setClickable(false);
+        mAnswerButton3.setClickable(false);
+
         if(v == mAnswerButton0){
             selectedAnswer = (String) mAnswerButton0.getText();
             if(answerIsCorrect(selectedAnswer)){ // CORRECT ANSWER
@@ -101,7 +109,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             selectedAnswer = (String) mAnswerButton2.getText();
             if(answerIsCorrect(selectedAnswer)){ // CORRECT ANSWER
                 game.correctAnswer(mQuestions.get(0).getDifficulty());
-
                 mAnswerButton2.setBackgroundColor(0xff00ff00);
             }else{ // INCORRECT ANSWER
                 mQuestions.get(0).setIncorrectGuess(mAnswerButton2.getText().toString());
@@ -127,6 +134,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("MATT SCORE ****  ", Integer.toString(game.getScore()));
             Log.d("MATT STREAK ****  ", Integer.toString(game.getCorrectAnswerStreak()));
             Log.d("MATT COINS ****  ", Integer.toString(game.getNumOfCoins()));
+            mCoinCount.setText(game.getNumOfCoins());
+            mCurrentScore.setText(game.getScore());
             getQuestions();
         }
     }
@@ -184,6 +193,12 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         mAnswerButton1.setText(allAnswers.get(1));
         mAnswerButton2.setText(allAnswers.get(2));
         mAnswerButton3.setText(allAnswers.get(3));
+
+        // Sets clickable back to true
+        mAnswerButton0.setClickable(true);
+        mAnswerButton1.setClickable(true);
+        mAnswerButton2.setClickable(true);
+        mAnswerButton3.setClickable(true);
     }
 }
 
