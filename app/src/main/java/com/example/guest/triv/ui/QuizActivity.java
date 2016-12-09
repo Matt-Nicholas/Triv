@@ -9,11 +9,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.guest.triv.Constants;
 import com.example.guest.triv.R;
 import com.example.guest.triv.models.Game;
+import com.example.guest.triv.models.HighScore;
 import com.example.guest.triv.models.Question;
 import com.example.guest.triv.services.TriviaService;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.parceler.Parcels;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,7 +41,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private Game game;
     private SharedPreferences mSharedPreferences;
     private String mCategory;
-
+    private String mUser;
 
     //Bind views using ButtKnife
     @Bind(R.id.categoryView) TextView mCategoryView;
@@ -54,7 +60,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mCategory = mSharedPreferences.getString(Constants.CHOOSEN_CATEGORY, null);
+        mCategory = mSharedPreferences.getString(Constants.CHOSEN_CATEGORY, null);
+        mUser = mSharedPreferences.getString(Constants.CURRENT_USER, null);
 
         // Set on click listeners
         mAnswerButton0.setOnClickListener(this);
@@ -122,9 +129,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if(game.getNumOfCoins() == 0){  // GAME OVER
+            saveScore();
             Intent intent = new Intent(QuizActivity.this, GameOverActivity.class);
             intent.putExtra("game", Parcels.wrap(game)); // Passes current game to the game over activity
-            //TODO ADD SCORE TO FIREBASE IF HIGHER THAN CURRENT HIGH SCORE
             startActivity(intent);
         }else{ // STILL PLAYING
             Log.d("MATT SCORE ****  ", Integer.toString(game.getScore()));
@@ -158,6 +165,16 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 });
             }
         });
+    }
+//
+    //Create HighScore object and save it to firebase
+    public void saveScore(){
+        HighScore hs= new HighScore(game.getScore(), mUser, game.getCategory());
+        DatabaseReference highScoreRef = FirebaseDatabase
+                .getInstance()
+                .getReference(Constants.FIREBASE_CHILD_HIGH_SCORES);
+        highScoreRef.push().setValue(hs);
+        Toast.makeText(QuizActivity.this, "New High Score!", Toast.LENGTH_SHORT).show();
     }
 
     // UPDATE DISPLAY

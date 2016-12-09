@@ -22,7 +22,6 @@ import butterknife.ButterKnife;
 
 public class CategoryActivity extends AppCompatActivity implements View.OnClickListener{
     // Private variable declarations
-    private static final String UNDER_CONSTRUCTION = "This category is still under construction";
     private static final String PREPARING_QUESTIONS = "Preparing your questions!";
 
     private SharedPreferences mSharedPreferences;
@@ -55,6 +54,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     getSupportActionBar().setTitle("Welcome, " + user.getDisplayName() + "!");
+                    addUserToSharedPreferences(user.getDisplayName());
                 } else {
                 }
             }
@@ -92,9 +92,13 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         finish();
     }
 
-    private void addToSharedPreferences(String location) {
-        mEditor.putString(Constants.CHOOSEN_CATEGORY, location).apply();
+    private void addCategoryToSharedPreferences(String location) {
+        mEditor.putString(Constants.CHOSEN_CATEGORY, location).apply();
     }
+    private void addUserToSharedPreferences(String location) {
+        mEditor.putString(Constants.CURRENT_USER, location).apply();
+    }
+
 
     @Override
     public void onStart() {
@@ -119,7 +123,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void run() {
                     String category = (String) mSportsButton.getText();
-                    addToSharedPreferences(category);
+                    addCategoryToSharedPreferences(category);
                     Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
                     startActivity(intent);
                 }
@@ -132,7 +136,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void run() {
                     String category = (String) mEntertainmentButton.getText();
-                    addToSharedPreferences(category);
+                    addCategoryToSharedPreferences(category);
 
                     Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
                     startActivity(intent);
@@ -146,7 +150,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void run() {
                     String category = (String) mHistoryButton.getText();
-                    addToSharedPreferences(category);
+                    addCategoryToSharedPreferences(category);
 
                     Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
                     startActivity(intent);
@@ -160,7 +164,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void run() {
                     String category = (String) mPoliticsButton.getText();
-                    addToSharedPreferences(category);
+                    addCategoryToSharedPreferences(category);
 
                     Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
                     startActivity(intent);
@@ -174,7 +178,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void run() {
                     String category = (String) mAnimalsButton.getText();
-                    addToSharedPreferences(category);
+                    addCategoryToSharedPreferences(category);
 
                     Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
                     startActivity(intent);
@@ -188,7 +192,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void run() {
                     String category = (String) mGeographyButton.getText();
-                    addToSharedPreferences(category);
+                    addCategoryToSharedPreferences(category);
 
                     Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
                     startActivity(intent);
@@ -202,8 +206,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void run() {
                     String category = (String) mRandomButton.getText();
-                    addToSharedPreferences(category);
-
+                    addCategoryToSharedPreferences(category);
                     Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
                     startActivity(intent);
                 }
