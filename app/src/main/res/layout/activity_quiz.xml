@@ -87,7 +87,11 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentLeft="false"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -99,7 +103,7 @@
         android:id="@+id/imageView2"
         android:layout_alignBottom="@+id/categoryView"
         android:layout_toStartOf="@+id/tv_coin_count"
-        android:layout_toLeftOf="@+id/tv_coin_count"/>
+        android:layout_toLeftOf="@+id/tv_coin_count" />
 
     <TextView
         android:text="x 0"
@@ -110,7 +114,7 @@
         android:layout_toStartOf="@+id/textView3"
         android:layout_alignBottom="@+id/imageView2"
         android:layout_alignParentTop="true"
-        android:paddingTop="15dp"
+        android:paddingTop="10dp"
         android:layout_marginRight="30dp"
         android:textSize="20sp"/>
 
@@ -159,9 +163,8 @@
         android:layout_gravity="center_horizontal"
         android:textColor="@color/_primaryText"
         android:typeface="monospace"
-        android:textSize="18sp"
+        android:textSize="12sp"
         android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"/>
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

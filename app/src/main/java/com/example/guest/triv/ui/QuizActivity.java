@@ -180,7 +180,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     // UPDATE DISPLAY
     public void setNewQuestion(String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswer){
 
-        mCoinCount.setText(" x " + game.getNumOfCoins());
+        mCoinCount.setText("x " + game.getNumOfCoins());
         mCurrentScore.setText(Integer.toString(game.getScore()));
         // Make a copy of incorrect Answers array list
         allAnswers = new ArrayList<>(incorrectAnswer);
