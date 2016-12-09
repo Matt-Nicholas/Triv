@@ -7,13 +7,69 @@ import org.parceler.Parcel;
 public class Game {
     private String mCategory;
     private int mCategoryId = -1;
-    private int mNumOfIncorrectAnswers = 0;
+    private int mNumOfCoins = 5;
+    private int mScore;
+    private int mCorrectAnswerStreak;
     private ArrayList<Question> mIncorrectlyAnsweredQuestions = new ArrayList<>();
 
-
-    public Game(){} // empty constructor needed by the Parceler library
+    //  CONSTRUCTOR
     public Game(String category) {
         mCategory = category;
+    }
+
+    // empty constructor needed by the Parceler library
+    public Game(){}
+
+
+    public void decreaseCoinsByOne(){
+        mNumOfCoins --;
+    }
+    public void increaseCoinsByOne(){
+        mNumOfCoins ++;
+    }
+    private void increaseScore(String difficulty){
+        switch(difficulty){
+            case "easy": mScore += 5;
+                break;
+            case "medium": mScore += 10;
+                    break;
+            case "hard": mScore += 15;
+                break;
+        }
+    }
+
+    public void correctAnswer(String difficulty){
+        increaseStreak();
+        increaseScore(difficulty);
+        if((mCorrectAnswerStreak % 5) == 0){
+            increaseCoinsByOne();
+        }
+    }
+
+    public void incorrectAnswer(Question question){
+        mIncorrectlyAnsweredQuestions.add(question);
+        mCorrectAnswerStreak = 0;
+        mNumOfCoins --;
+    }
+
+    private void increaseStreak(){
+        mCorrectAnswerStreak ++;
+    }
+
+    //  GETTERS and SETTERS
+
+    public void setCorrectAnswerStreak(int correctAnswerStreak) {
+        this.mCorrectAnswerStreak = correctAnswerStreak;
+    }
+
+    public int getCorrectAnswerStreak() {
+        return mCorrectAnswerStreak;
+    }
+    public int getScore() {
+        return mScore;
+    }
+    public void setScore(int score) {
+        mScore = score;
     }
 
     public String getCategory() {
@@ -24,13 +80,11 @@ public class Game {
         mCategory = category;
     }
 
-    public int getNumOfIncorrectAnswers() {
-        return mNumOfIncorrectAnswers;
+    public int getNumOfCoins() {
+        return mNumOfCoins;
     }
 
-    public void setNumOfIncorrectAnswers(int numOfIncorrectAnswers) {
-        mNumOfIncorrectAnswers = numOfIncorrectAnswers;
-    }
+    public void setNumOfCoins(int numOfCoins) {mNumOfCoins = numOfCoins;}
 
     public ArrayList<Question> getIncorrectlyAnsweredQuestions() {
         return mIncorrectlyAnsweredQuestions;

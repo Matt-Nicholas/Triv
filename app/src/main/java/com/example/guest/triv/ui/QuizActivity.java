@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -77,65 +78,59 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         String selectedAnswer;
         if(v == mAnswerButton0){
             selectedAnswer = (String) mAnswerButton0.getText();
-            if(answerIsCorrect(selectedAnswer, 0)){
-                Toast.makeText(QuizActivity.this, CORRECT, Toast.LENGTH_SHORT).show();
-                mAnswerButton0.setBackgroundColor(0xff00ff00);
-                getQuestions();
-            }else{
+            if(answerIsCorrect(selectedAnswer)){ // CORRECT ANSWER
+                game.correctAnswer(mQuestions.get(0).getDifficulty());// Adds one to streak for a correct answer
+                mAnswerButton0.setBackgroundColor(0xff00ff00); // sets button color to green to show correct answer
+                getQuestions(); // Gets a new question from the api and replaces the text views with the new info
+            }else{ // INCORRECT ANSWER
                 mQuestions.get(0).setIncorrectGuess(mAnswerButton0.getText().toString());
-                game.addIncorrectlyAnsweredQuestion(mQuestions.get(0));
-                Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
-                mAnswerButton0.setBackgroundColor(0xffff0000);
-                getQuestions();
+                game.incorrectAnswer(mQuestions.get(0));// Adds the current question to incorrectly answered questions and Sets streak back to zero
+                mAnswerButton0.setBackgroundColor(0xffff0000); // Sets button color to red to show incorrect answer
             }
         } else if(v == mAnswerButton1){
             selectedAnswer = (String) mAnswerButton1.getText();
-            if(answerIsCorrect(selectedAnswer, 1)){
-                Toast.makeText(QuizActivity.this, CORRECT, Toast.LENGTH_SHORT).show();
+            if(answerIsCorrect(selectedAnswer)){ // CORRECT ANSWER
+                game.correctAnswer(mQuestions.get(0).getDifficulty());
                 mAnswerButton1.setBackgroundColor(0xff00ff00);
-                getQuestions();
-            }else{
+            }else{ // INCORRECT ANSWER
                 mQuestions.get(0).setIncorrectGuess(mAnswerButton1.getText().toString());
-                game.addIncorrectlyAnsweredQuestion(mQuestions.get(0));
-                Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
+                game.incorrectAnswer(mQuestions.get(0));
                 mAnswerButton1.setBackgroundColor(0xffff0000);
-                getQuestions();
             }
         }else if(v == mAnswerButton2){
             selectedAnswer = (String) mAnswerButton2.getText();
-            if(answerIsCorrect(selectedAnswer, 2)){
-                Toast.makeText(QuizActivity.this, CORRECT, Toast.LENGTH_SHORT).show();
+            if(answerIsCorrect(selectedAnswer)){ // CORRECT ANSWER
+                game.correctAnswer(mQuestions.get(0).getDifficulty());
+
                 mAnswerButton2.setBackgroundColor(0xff00ff00);
-                getQuestions();
-            }else{
+            }else{ // INCORRECT ANSWER
                 mQuestions.get(0).setIncorrectGuess(mAnswerButton2.getText().toString());
-                game.addIncorrectlyAnsweredQuestion(mQuestions.get(0));
-                Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
+                game.incorrectAnswer(mQuestions.get(0));
                 mAnswerButton2.setBackgroundColor(0xffff0000);
-                getQuestions();
             }
         }else if(v == mAnswerButton3){
             selectedAnswer = (String) mAnswerButton3.getText();
-            if(answerIsCorrect(selectedAnswer, 3)){
-                Toast.makeText(QuizActivity.this, CORRECT, Toast.LENGTH_SHORT).show();
+            if(answerIsCorrect(selectedAnswer)){ // CORRECT ANSWER
+                game.correctAnswer(mQuestions.get(0).getDifficulty());
                 mAnswerButton3.setBackgroundColor(0xff00ff00);
-                getQuestions();
-
-            }else{
+            }else{ // INCORRECT ANSWER
                 mQuestions.get(0).setIncorrectGuess(mAnswerButton3.getText().toString());
-                game.addIncorrectlyAnsweredQuestion(mQuestions.get(0));
-                Toast.makeText(QuizActivity.this, INCORRECT, Toast.LENGTH_SHORT).show();
+                game.incorrectAnswer(mQuestions.get(0));
                 mAnswerButton3.setBackgroundColor(0xffff0000);
-                getQuestions();
             }
         }
-        if(game.getIncorrectlyAnsweredQuestions().size() >= 5){
+        if(game.getNumOfCoins() == 0){ // Game Over
             Intent intent = new Intent(QuizActivity.this, GameOverActivity.class);
-            intent.putExtra("game", Parcels.wrap(game));
+            intent.putExtra("game", Parcels.wrap(game)); // Passes current game to the game over activity
             startActivity(intent);
+        }else{ // Still Alive
+            Log.d("MATT SCORE ****  ", Integer.toString(game.getScore()));
+            Log.d("MATT STREAK ****  ", Integer.toString(game.getCorrectAnswerStreak()));
+            Log.d("MATT COINS ****  ", Integer.toString(game.getNumOfCoins()));
+            getQuestions();
         }
     }
-    public boolean answerIsCorrect(String a, int i){
+    public boolean answerIsCorrect(String a){
         if (mQuestions.get(0).getCorrectAnswer().equals(a)){
             return true;
         }

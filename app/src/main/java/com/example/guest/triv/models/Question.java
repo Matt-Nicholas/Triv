@@ -18,9 +18,6 @@ public class Question {
     private String mQuestion;
     private String mCorrectAnswer;
     private ArrayList<String> mIncorrectAnswers;
-
-
-
     private String incorrectGuess;
 
     public Question(){}
