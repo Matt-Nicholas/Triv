@@ -42,6 +42,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private SharedPreferences mSharedPreferences;
     private String mCategory;
     private String mUser;
+    private DatabaseReference highScoreRef;
 
     //Bind views using ButtKnife
     @Bind(R.id.categoryView) TextView mCategoryView;
@@ -170,7 +171,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     //Create HighScore object and save it to firebase
     public void saveScore(){
         HighScore hs= new HighScore(game.getScore(), mUser, game.getCategory());
-        DatabaseReference highScoreRef = FirebaseDatabase
+        highScoreRef = FirebaseDatabase
                 .getInstance()
                 .getReference(Constants.FIREBASE_CHILD_HIGH_SCORES);
         highScoreRef.push().setValue(hs);

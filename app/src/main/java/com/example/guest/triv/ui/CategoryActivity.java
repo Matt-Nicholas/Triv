@@ -13,10 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
 import com.example.guest.triv.Constants;
 import com.example.guest.triv.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -37,6 +39,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     @Bind(R.id.animalsButton) Button mAnimalsButton;
     @Bind(R.id.geographyButton) Button mGeographyButton;
     @Bind(R.id.randomButton) Button mRandomButton;
+    @Bind(R.id.butt_high_scores) Button mHighScoreButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         mAnimalsButton.setOnClickListener(this);
         mGeographyButton.setOnClickListener(this);
         mRandomButton.setOnClickListener(this);
+        mHighScoreButton.setOnClickListener(this);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -116,6 +120,11 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     // Execute actions depending on which onClick listener is triggered
     @Override
     public void onClick(View v){
+        if(v == mHighScoreButton){
+            Intent intent = new Intent(CategoryActivity.this, HighScoreActivity.class);
+            startActivity(intent);
+        }
+
         if(v == mSportsButton){
             Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
             Handler mHandler = new Handler();
