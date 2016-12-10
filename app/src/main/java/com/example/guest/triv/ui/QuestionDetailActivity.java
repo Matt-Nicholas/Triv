@@ -15,7 +15,6 @@ public class QuestionDetailActivity extends AppCompatActivity {
 
     @Bind(R.id.viewPager)
     ViewPager mViewPager;
-    private QuestionPagerAdapter adapterViewPager;
     ArrayList<Question> mQuestions = new ArrayList<>();
 
     @Override
@@ -27,7 +26,7 @@ public class QuestionDetailActivity extends AppCompatActivity {
         mQuestions = Parcels.unwrap(getIntent().getParcelableExtra("questions"));
         int startingPosition = getIntent().getIntExtra("position", 0);
 
-        adapterViewPager = new QuestionPagerAdapter(getSupportFragmentManager(), mQuestions);
+        QuestionPagerAdapter adapterViewPager = new QuestionPagerAdapter(getSupportFragmentManager(), mQuestions);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
     }

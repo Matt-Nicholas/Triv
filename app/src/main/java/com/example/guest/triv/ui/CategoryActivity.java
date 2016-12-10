@@ -27,7 +27,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     // Private variable declarations
     private static final String PREPARING_QUESTIONS = "Preparing your questions!";
 
-    private SharedPreferences mSharedPreferences;
+
     private SharedPreferences.Editor mEditor;
 
     private FirebaseAuth mAuth;
@@ -47,10 +47,8 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         ButterKnife.bind(this);
-
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
-
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -59,7 +57,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 if (user != null) {
                     getSupportActionBar().setTitle("Welcome, " + user.getDisplayName() + "!");
                     addUserToSharedPreferences(user.getDisplayName());
-                } else {
                 }
             }
         };

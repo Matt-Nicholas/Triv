@@ -34,16 +34,10 @@ import okhttp3.Response;
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener{
     public static final String TAG = QuizActivity.class.getSimpleName();
     // Private variable declarations
-    private static final String CORRECT = "Correct!";
-    private static final String INCORRECT = "Wrong!";
     private ArrayList<Question> mQuestions = new ArrayList<>();
     List<String> allAnswers = new ArrayList<>();
     private Game game;
-    private SharedPreferences mSharedPreferences;
-    private String mCategory;
     private String mUser;
-    private DatabaseReference mHighScoreReference;
-
     //Bind views using ButtKnife
     @Bind(R.id.categoryView) TextView mCategoryView;
     @Bind(R.id.questionView) TextView mQuestionView;
@@ -59,39 +53,33 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         ButterKnife.bind(this);
-
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mCategory = mSharedPreferences.getString(Constants.CHOSEN_CATEGORY, null);
+        SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String mCategory = mSharedPreferences.getString(Constants.CHOSEN_CATEGORY, null);
         mUser = mSharedPreferences.getString(Constants.CURRENT_USER, null);
-
         // Set on click listeners
         mAnswerButton0.setOnClickListener(this);
         mAnswerButton1.setOnClickListener(this);
         mAnswerButton2.setOnClickListener(this);
         mAnswerButton3.setOnClickListener(this);
+        toggleButtonClickable(false);//Disable click listener for all buttons until new question is loaded
         game = new Game(mCategory);
         if(!mCategory.equals("RANDOM")){
             game.setCategoryId(mCategory);
         }
         getQuestions();
     }
+
       // Execute actions depending on which onClick listener is triggered
     @Override
     public void onClick(View v){
         String selectedAnswer;
-
         //Disable click listener for all buttons until new question is loaded
-        mAnswerButton0.setClickable(false);
-        mAnswerButton1.setClickable(false);
-        mAnswerButton2.setClickable(false);
-        mAnswerButton3.setClickable(false);
-
+        toggleButtonClickable(false);
         if(v == mAnswerButton0){
             selectedAnswer = (String) mAnswerButton0.getText();
             if(answerIsCorrect(selectedAnswer)){ // CORRECT ANSWER
                 game.correctAnswer(mQuestions.get(0).getDifficulty());// Adds one to streak for a correct answer
                 mAnswerButton0.setBackgroundColor(0xff00ff00); // sets button color to green to show correct answer
-
             }else{ // INCORRECT ANSWER
                 mQuestions.get(0).setIncorrectGuess(mAnswerButton0.getText().toString());
                 game.incorrectAnswer(mQuestions.get(0));// Adds the current question to incorrectly answered questions and Sets streak back to zero
@@ -128,8 +116,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 mAnswerButton3.setBackgroundColor(0xffff0000);
             }
         }
-
-        if(game.getNumOfCoins() == 0){  // GAME OVER
+        if(game.getNumOfCoins() <= 0){  // GAME OVER
             saveScore();
             Intent intent = new Intent(QuizActivity.this, GameOverActivity.class);
             intent.putExtra("game", Parcels.wrap(game)); // Passes current game to the game over activity
@@ -170,6 +157,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 //
     //Create HighScore object and save it to firebase
     public void saveScore(){
+        DatabaseReference mHighScoreReference;
         HighScore hs= new HighScore(game.getScore(), mUser, game.getCategory());
         mHighScoreReference = FirebaseDatabase
                 .getInstance()
@@ -180,8 +168,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
     // UPDATE DISPLAY
     public void setNewQuestion(String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswer){
-
-        mCoinCount.setText("x " + game.getNumOfCoins());
+        String coinDisplay = "x " + game.getNumOfCoins();
+        mCoinCount.setText(coinDisplay);
         mCurrentScore.setText(Integer.toString(game.getScore()));
         // Make a copy of incorrect Answers array list
         allAnswers = new ArrayList<>(incorrectAnswer);
@@ -211,10 +199,14 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         mAnswerButton3.setText(allAnswers.get(3));
 
         // Sets clickable back to true
-        mAnswerButton0.setClickable(true);
-        mAnswerButton1.setClickable(true);
-        mAnswerButton2.setClickable(true);
-        mAnswerButton3.setClickable(true);
+        toggleButtonClickable(true);
+    }
+    // Toggles click on buttons
+    public void toggleButtonClickable(boolean b){
+        mAnswerButton0.setClickable(b);
+        mAnswerButton1.setClickable(b);
+        mAnswerButton2.setClickable(b);
+        mAnswerButton3.setClickable(b);
     }
 }
 

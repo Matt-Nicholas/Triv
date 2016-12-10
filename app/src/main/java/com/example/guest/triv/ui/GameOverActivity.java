@@ -18,7 +18,6 @@ public class GameOverActivity extends AppCompatActivity {
 
     @Bind(R.id.recyclerView)
     RecyclerView mRecyclerView;
-    private QuestionListAdapter mAdapter;
 
     ArrayList<Question> questions = new ArrayList<>();
 
@@ -29,7 +28,7 @@ public class GameOverActivity extends AppCompatActivity {
             ButterKnife.bind(this);
             Game game = Parcels.unwrap(getIntent().getParcelableExtra("game"));
             questions = new ArrayList<>(game.getIncorrectlyAnsweredQuestions());
-        mAdapter = new QuestionListAdapter(getApplicationContext(), questions);
+        QuestionListAdapter mAdapter = new QuestionListAdapter(getApplicationContext(), questions);
         mRecyclerView.setAdapter(mAdapter);
         RecyclerView.LayoutManager layoutManager =
                 new LinearLayoutManager(GameOverActivity.this);
