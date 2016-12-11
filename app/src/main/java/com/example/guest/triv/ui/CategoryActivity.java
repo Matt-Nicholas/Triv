@@ -29,7 +29,6 @@ import static android.os.Build.VERSION_CODES.N;
 public class CategoryActivity extends AppCompatActivity implements View.OnClickListener{
     // Private variable declarations
     private static final String PREPARING_QUESTIONS = "Preparing your questions!";
-
     private SharedPreferences.Editor mEditor;
 
     //Bind views using ButtKnife
@@ -59,16 +58,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         mGeographyButton.setOnClickListener(this);
         mRandomButton.setOnClickListener(this);
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
     private void addCategoryToSharedPreferences(String location) {
         mEditor.putString(Constants.CHOSEN_CATEGORY, location).apply();

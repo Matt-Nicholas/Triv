@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 public class HomeScreenActivity extends AppCompatActivity implements View.OnClickListener{
     @Bind(R.id.butt_highscores) Button mHighScoresButton;
     @Bind(R.id.butt_start_game) Button mPlayButton;
-
+    @Bind(R.id.butt_help) Button mHelpButton;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private SharedPreferences.Editor mEditor;
@@ -47,9 +47,9 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
             }
         };
 
-
         mHighScoresButton.setOnClickListener(this);
         mPlayButton.setOnClickListener(this);
+        mHelpButton.setOnClickListener(this);
     }
     private void addUserToSharedPreferences(String location) {
         mEditor.putString(Constants.CURRENT_USER, location).apply();
@@ -66,8 +66,6 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -100,6 +98,10 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
         }
         if(v == mPlayButton){
             Intent intent = new Intent(HomeScreenActivity.this, CategoryActivity.class);
+            startActivity(intent);
+        }
+        if(v == mHelpButton){
+            Intent intent = new Intent(HomeScreenActivity.this, InstructionsActivity.class);
             startActivity(intent);
         }
     }

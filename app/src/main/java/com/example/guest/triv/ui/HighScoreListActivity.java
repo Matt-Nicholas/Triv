@@ -18,8 +18,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class HighScoreListActivity extends AppCompatActivity {
-
-
         private DatabaseReference mHighScoreReference;
         private FirebaseRecyclerAdapter mFirebaseAdapter;
 
@@ -34,15 +32,11 @@ public class HighScoreListActivity extends AppCompatActivity {
             mHighScoreReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_HIGH_SCORES);
             setUpFirebaseAdapter();
         }
-
         private void setUpFirebaseAdapter() {
             mFirebaseAdapter = new FirebaseRecyclerAdapter<HighScore, FirebaseHighScoreViewHolder>
                     (HighScore.class, R.layout.high_score_list_item, FirebaseHighScoreViewHolder.class, mHighScoreReference) {
-
                 @Override
                 protected void populateViewHolder(FirebaseHighScoreViewHolder viewHolder,HighScore model, int position) {
-
-                    Log.d("MATT ** model", model.getUserName());
                     viewHolder.bindHighScore(model);
                 }
             };
@@ -50,10 +44,8 @@ public class HighScoreListActivity extends AppCompatActivity {
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             mRecyclerView.setAdapter(mFirebaseAdapter);
         }
-
         @Override
         protected void onDestroy() {
-            Log.d("MATT ** ", " DESTROYED");
             super.onDestroy();
             mFirebaseAdapter.cleanup();
         }

@@ -16,25 +16,26 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.CategoryActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName="com.example.guest.triv.ui.HomeScreenActivity">
+            android:parentActivityName=".ui.HomeScreenActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.guest.triv.ui.HomeScreenActivity"/>
-            </activity>
+        </activity>
         <activity
             android:name=".ui.QuizActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme"/>
         <activity
             android:name=".ui.GameOverActivity"
-            android:screenOrientation="portrait"
-            android:icon="@drawable/ic_home_black_24dp"/>
+            android:icon="@drawable/ic_home_black_24dp"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.QuestionDetailActivity"
             android:screenOrientation="portrait"/>
@@ -50,15 +51,24 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.HighScoreListActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName="com.example.guest.triv.ui.HomeScreenActivity">
+            android:parentActivityName=".ui.HomeScreenActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.guest.triv.ui.HomeScreenActivity"/>
-        </activity>/>
+        </activity>
+        />
         <activity
             android:name=".ui.HomeScreenActivity"
             android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.InstructionsActivity"
+            android:parentActivityName=".ui.HomeScreenActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.guest.triv.ui.HomeScreenActivity"/>
         </activity>
     </application>
 
