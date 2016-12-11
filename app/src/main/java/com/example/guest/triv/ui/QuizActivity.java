@@ -110,6 +110,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(QuizActivity.this, HomeScreenActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

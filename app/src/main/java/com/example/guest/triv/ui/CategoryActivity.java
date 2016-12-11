@@ -30,7 +30,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     // Private variable declarations
     private static final String PREPARING_QUESTIONS = "Preparing your questions!";
     private SharedPreferences.Editor mEditor;
-
+    private String mCategory;
     //Bind views using ButtKnife
     @Bind(R.id.sportsButton) Button mSportsButton;
     @Bind(R.id.entertainmentButton) Button mEntertainmentButton;
@@ -68,101 +68,38 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v){
         if(v == mSportsButton){
-            Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
-            Handler mHandler = new Handler();
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    String category = (String) mSportsButton.getText();
-                    addCategoryToSharedPreferences(category);
-                    Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
-                    startActivity(intent);
-                }
-
-            }, 2000L);        }
-        if(v == mEntertainmentButton){
-            Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
-            Handler mHandler = new Handler();
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    String category = (String) mEntertainmentButton.getText();
-                    addCategoryToSharedPreferences(category);
-
-                    Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
-                    startActivity(intent);
-                }
-
-            }, 2000L);        }
-        if(v == mHistoryButton){
-            Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
-            Handler mHandler = new Handler();
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    String category = (String) mHistoryButton.getText();
-                    addCategoryToSharedPreferences(category);
-
-                    Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
-                    startActivity(intent);
-                }
-
-            }, 2000L);        }
-        if(v == mPoliticsButton){
-            Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
-            Handler mHandler = new Handler();
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    String category = (String) mPoliticsButton.getText();
-                    addCategoryToSharedPreferences(category);
-
-                    Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
-                    startActivity(intent);
-                }
-
-            }, 2000L);        }
-        if(v == mAnimalsButton){
-            Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
-            Handler mHandler = new Handler();
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    String category = (String) mAnimalsButton.getText();
-                    addCategoryToSharedPreferences(category);
-
-                    Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
-                    startActivity(intent);
-                }
-
-            }, 2000L);        }
-        if(v == mGeographyButton){
-            Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
-            Handler mHandler = new Handler();
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    String category = (String) mGeographyButton.getText();
-                    addCategoryToSharedPreferences(category);
-                    Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
-                    startActivity(intent);
-                }
-
-            }, 2000L);        }
-        if(v == mRandomButton){
-            Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
-            Handler mHandler = new Handler();
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    String category = (String) mRandomButton.getText();
-                    addCategoryToSharedPreferences(category);
-                    Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
-                    startActivity(intent);
-                }
-
-            }, 2000L);
+            mCategory = (String) mSportsButton.getText();
         }
+        if(v == mEntertainmentButton){
+            mCategory = (String) mEntertainmentButton.getText();
+        }
+        if(v == mHistoryButton){
+            mCategory = (String) mHistoryButton.getText();
+        }
+        if(v == mPoliticsButton){
+            mCategory = (String) mPoliticsButton.getText();
+        }
+        if(v == mAnimalsButton){
+            mCategory = (String) mAnimalsButton.getText();
+        }
+        if(v == mGeographyButton){
+            mCategory = (String) mGeographyButton.getText();
+        }
+        if(v == mRandomButton){
+            mCategory = (String) mRandomButton.getText();
+        }
+        Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                addCategoryToSharedPreferences(mCategory);
+                Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+        }, 2000L);
 
     }
 }
