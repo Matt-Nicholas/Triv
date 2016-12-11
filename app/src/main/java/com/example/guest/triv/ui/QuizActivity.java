@@ -1,9 +1,11 @@
 package com.example.guest.triv.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -70,8 +72,23 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     }
     @Override
     public void onBackPressed() {
-        // TODO: 12/10/2016 back button prompts user to verify quit game
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to quit? All progress will be lost")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(QuizActivity.this, HomeScreenActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
+
 
       // Execute actions depending on which onClick listener is triggered
     @Override
