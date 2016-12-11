@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -23,15 +24,14 @@ import com.google.firebase.auth.FirebaseUser;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+import static android.os.Build.VERSION_CODES.N;
+
 public class CategoryActivity extends AppCompatActivity implements View.OnClickListener{
     // Private variable declarations
     private static final String PREPARING_QUESTIONS = "Preparing your questions!";
 
-
     private SharedPreferences.Editor mEditor;
 
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     //Bind views using ButtKnife
     @Bind(R.id.sportsButton) Button mSportsButton;
     @Bind(R.id.entertainmentButton) Button mEntertainmentButton;
@@ -40,7 +40,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     @Bind(R.id.animalsButton) Button mAnimalsButton;
     @Bind(R.id.geographyButton) Button mGeographyButton;
     @Bind(R.id.randomButton) Button mRandomButton;
-    @Bind(R.id.butt_high_scores) Button mHighScoreButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +48,8 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_category);
         ButterKnife.bind(this);
         SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mSharedPreferences.edit();
-        mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    getSupportActionBar().setTitle("Welcome, " + user.getDisplayName() + "!");
-                    addUserToSharedPreferences(user.getDisplayName());
-                }
-            }
-        };
 
+        mEditor = mSharedPreferences.edit();
         // Set on click listeners
         mSportsButton.setOnClickListener(this);
         mEntertainmentButton.setOnClickListener(this);
@@ -69,61 +58,24 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
         mAnimalsButton.setOnClickListener(this);
         mGeographyButton.setOnClickListener(this);
         mRandomButton.setOnClickListener(this);
-        mHighScoreButton.setOnClickListener(this);
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_logout) {
-            logout();
-            return true;
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-    private void logout() {
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(CategoryActivity.this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
     }
 
     private void addCategoryToSharedPreferences(String location) {
         mEditor.putString(Constants.CHOSEN_CATEGORY, location).apply();
     }
-    private void addUserToSharedPreferences(String location) {
-        mEditor.putString(Constants.CURRENT_USER, location).apply();
-    }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
     // Execute actions depending on which onClick listener is triggered
     @Override
     public void onClick(View v){
-        if(v == mHighScoreButton){
-            Log.d("MATT ** ", " clicked");
-            Intent intent = new Intent(CategoryActivity.this, HighScoreListActivity.class);
-            startActivity(intent);
-        }
-
         if(v == mSportsButton){
             Toast.makeText(CategoryActivity.this, PREPARING_QUESTIONS, Toast.LENGTH_SHORT).show();
             Handler mHandler = new Handler();

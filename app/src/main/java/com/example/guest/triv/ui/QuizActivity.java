@@ -116,7 +116,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 mAnswerButton3.setBackgroundColor(0xffff0000);
             }
         }
-        if(game.getNumOfCoins() <= 0){  // GAME OVER
+        if(game.getNumOfCoins() <= 4){  // GAME OVER
             saveScore();
             Intent intent = new Intent(QuizActivity.this, GameOverActivity.class);
             intent.putExtra("game", Parcels.wrap(game)); // Passes current game to the game over activity

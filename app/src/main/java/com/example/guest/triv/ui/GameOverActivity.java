@@ -1,15 +1,25 @@
 package com.example.guest.triv.ui;
 
+import android.content.Intent;
+import android.preference.PreferenceManager;
+import android.support.v4.app.NavUtils;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
 import com.example.guest.triv.R;
 import com.example.guest.triv.adapters.QuestionListAdapter;
 import com.example.guest.triv.models.Game;
 import com.example.guest.triv.models.Question;
 import org.parceler.Parcels;
 import java.util.ArrayList;
+import java.util.zip.Inflater;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -23,6 +33,8 @@ public class GameOverActivity extends AppCompatActivity {
 
     @Override
         protected void onCreate(Bundle savedInstanceState) {
+//        getSupportActionBar().setTitle("Here's the questions you missed!");
+
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_gameover);
             ButterKnife.bind(this);
@@ -34,5 +46,33 @@ public class GameOverActivity extends AppCompatActivity {
                 new LinearLayoutManager(GameOverActivity.this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_gameover, menu);
+        ButterKnife.bind(this);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home_button:
+                Intent intent = new Intent(GameOverActivity.this, HomeScreenActivity.class);
+                startActivity(intent);
+                return true;
+
+//            case R.id.action_favorite:
+//                // User chose the "Favorite" action, mark the current item
+//                // as a favorite...
+//                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }
