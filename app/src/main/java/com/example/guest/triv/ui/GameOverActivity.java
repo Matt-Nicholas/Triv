@@ -54,6 +54,11 @@ public class GameOverActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         return true;
     }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(GameOverActivity.this, HomeScreenActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

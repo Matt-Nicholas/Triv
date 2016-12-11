@@ -68,6 +68,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         }
         getQuestions();
     }
+    @Override
+    public void onBackPressed() {
+        // TODO: 12/10/2016 back button prompts user to verify quit game
+    }
 
       // Execute actions depending on which onClick listener is triggered
     @Override

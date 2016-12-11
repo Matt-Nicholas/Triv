@@ -43,6 +43,11 @@ public class QuestionDetailActivity extends AppCompatActivity {
         return true;
     }
     @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(QuestionDetailActivity.this, HomeScreenActivity.class);
+        startActivity(intent);
+    }
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home_button:

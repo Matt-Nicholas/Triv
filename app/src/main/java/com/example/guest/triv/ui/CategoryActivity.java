@@ -63,6 +63,7 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
     private void addCategoryToSharedPreferences(String location) {
         mEditor.putString(Constants.CHOSEN_CATEGORY, location).apply();
     }
+
     // Execute actions depending on which onClick listener is triggered
     @Override
     public void onClick(View v){
