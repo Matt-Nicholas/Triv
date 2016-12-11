@@ -11,6 +11,7 @@
     tools:context="com.example.guest.triv.ui.QuizActivity"
     android:background="@color/_colorAccent">
 
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -152,7 +153,9 @@
         android:typeface="monospace"
         android:layout_marginTop="75dp"
         android:layout_below="@+id/categoryView"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -166,5 +169,18 @@
         android:textSize="12sp"
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true" />
+
+    <ProgressBar
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pb_question_timer"
+        android:layout_below="@+id/categoryView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:max="200"
+        android:progress="0"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"/>
 
 </RelativeLayout>

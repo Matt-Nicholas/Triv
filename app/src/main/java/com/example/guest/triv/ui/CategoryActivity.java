@@ -144,7 +144,6 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
                 public void run() {
                     String category = (String) mGeographyButton.getText();
                     addCategoryToSharedPreferences(category);
-
                     Intent intent = new Intent(CategoryActivity.this, QuizActivity.class);
                     startActivity(intent);
                 }

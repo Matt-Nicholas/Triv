@@ -42,11 +42,12 @@ public class QuestionDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         return true;
     }
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(QuestionDetailActivity.this, HomeScreenActivity.class);
-        startActivity(intent);
-    }
+//    @Override
+//    public void onBackPressed() {
+//        Intent intent = new Intent(QuestionDetailActivity.this, GameOverActivity.class);
+//        startActivity(intent);
+//        finish();
+//    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

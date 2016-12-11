@@ -4,12 +4,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     List<String> allAnswers = new ArrayList<>();
     private Game game;
     private String mUser;
+    private boolean mTimerExists = false;
     //Bind views using ButtKnife
     @Bind(R.id.categoryView) TextView mCategoryView;
     @Bind(R.id.questionView) TextView mQuestionView;
@@ -49,6 +51,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.answerButton3) Button mAnswerButton3;
     @Bind(R.id.tv_coin_count) TextView mCoinCount;
     @Bind(R.id.tv_score) TextView mCurrentScore;
+    ProgressBar mProgressBar;
+    CountDownTimer mCountDownTimer;
+    int timer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +75,33 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             game.setCategoryId(mCategory);
         }
         getQuestions();
+
     }
+    public void qTimer(){
+
+        timer = 0;
+        mProgressBar=(ProgressBar)findViewById(R.id.pb_question_timer);
+        mProgressBar.setProgress(timer);
+        mCountDownTimer=new CountDownTimer(20000,100) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timer++;
+                mProgressBar.setProgress(timer);
+            }
+
+            @Override
+            public void onFinish() {
+                if(game.getNumOfCoins() > 0){
+                    mQuestions.get(0).setIncorrectGuess("Ran out of time");
+                    game.incorrectAnswer(mQuestions.get(0));// Adds the current question to incorrectly answered questions and Sets streak back to zero
+                    checkIfStillPlaying();
+                }
+            }
+        };
+        mTimerExists = true;
+    }
+
+
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
@@ -89,10 +121,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 .show();
     }
 
-
       // Execute actions depending on which onClick listener is triggered
     @Override
     public void onClick(View v){
+        mCountDownTimer.cancel();
         String selectedAnswer;
         //Disable click listener for all buttons until new question is loaded
         toggleButtonClickable(false);
@@ -137,23 +169,27 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 mAnswerButton3.setBackgroundColor(0xffff0000);
             }
         }
-        if(game.getNumOfCoins() <= 4){  // GAME OVER
-            saveScore();
-            Intent intent = new Intent(QuizActivity.this, GameOverActivity.class);
-            intent.putExtra("game", Parcels.wrap(game)); // Passes current game to the game over activity
-            startActivity(intent);
-        }else{ // STILL PLAYING
-            Log.d("MATT SCORE ****  ", Integer.toString(game.getScore()));
-            Log.d("MATT STREAK ****  ", Integer.toString(game.getCorrectAnswerStreak()));
-            Log.d("MATT COINS ****  ", Integer.toString(game.getNumOfCoins()));
-            getQuestions(); // Gets a new question from the api and replaces the text views with the new info
-        }
+
+        checkIfStillPlaying();
     }
+
     public boolean answerIsCorrect(String a){
         if (mQuestions.get(0).getCorrectAnswer().equals(a)){
             return true;
         }
         return false;
+    }
+
+    public void checkIfStillPlaying(){
+        if(game.getNumOfCoins() <= 0){  // GAME OVER
+            saveScore();
+            Intent intent = new Intent(QuizActivity.this, GameOverActivity.class);
+            intent.putExtra("game", Parcels.wrap(game)); // Passes current game to the game over activity
+            startActivity(intent);
+            finish();
+        }else{ // STILL PLAYING
+            getQuestions(); // Gets a new question from the api and replaces the text views with the new info
+        }
     }
 
     private void getQuestions() {
@@ -189,6 +225,11 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
     // UPDATE DISPLAY
     public void setNewQuestion(String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswer){
+        if(mTimerExists){
+            mCountDownTimer.cancel();
+        }
+        qTimer();
+
         String coinDisplay = "x " + game.getNumOfCoins();
         mCoinCount.setText(coinDisplay);
         mCurrentScore.setText(Integer.toString(game.getScore()));
@@ -221,6 +262,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         // Sets clickable back to true
         toggleButtonClickable(true);
+        mCountDownTimer.start();
+
     }
     // Toggles click on buttons
     public void toggleButtonClickable(boolean b){

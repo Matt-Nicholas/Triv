@@ -54,7 +54,6 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onBackPressed() {
         finish();
-
     }
     private void addUserToSharedPreferences(String location) {
         mEditor.putString(Constants.CURRENT_USER, location).apply();

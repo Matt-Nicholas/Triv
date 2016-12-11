@@ -58,6 +58,7 @@ public class GameOverActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(GameOverActivity.this, HomeScreenActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
