@@ -3,6 +3,7 @@ package com.example.guest.triv.ui;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
@@ -10,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,12 +38,20 @@ import okhttp3.Response;
 
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener{
     public static final String TAG = QuizActivity.class.getSimpleName();
+
     // Private variable declarations
     private ArrayList<Question> mQuestions = new ArrayList<>();
-    List<String> allAnswers = new ArrayList<>();
     private Game game;
     private String mUser;
     private boolean mTimerExists = false;
+    int timer;
+
+    List<String> allAnswers = new ArrayList<>();
+
+    ProgressBar mProgressBar;
+    CountDownTimer mCountDownTimer;
+
+
     //Bind views using ButtKnife
     @Bind(R.id.categoryView) TextView mCategoryView;
     @Bind(R.id.questionView) TextView mQuestionView;
@@ -51,10 +61,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.answerButton3) Button mAnswerButton3;
     @Bind(R.id.tv_coin_count) TextView mCoinCount;
     @Bind(R.id.tv_score) TextView mCurrentScore;
-    ProgressBar mProgressBar;
-    CountDownTimer mCountDownTimer;
-    int timer;
-
+    @Bind(R.id.iv_coin) ImageView mCoin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +71,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String mCategory = mSharedPreferences.getString(Constants.CHOSEN_CATEGORY, null);
         mUser = mSharedPreferences.getString(Constants.CURRENT_USER, null);
+
+
+
         // Set on click listeners
         mAnswerButton0.setOnClickListener(this);
         mAnswerButton1.setOnClickListener(this);
@@ -77,7 +87,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         getQuestions();
 
     }
+
     public void qTimer(){
+
+
 
         timer = 0;
         mProgressBar=(ProgressBar)findViewById(R.id.pb_question_timer);
@@ -134,6 +147,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             if(answerIsCorrect(selectedAnswer)){ // CORRECT ANSWER
                 game.correctAnswer(mQuestions.get(0).getDifficulty());// Adds one to streak for a correct answer
                 mAnswerButton0.setBackgroundColor(0xff00ff00); // sets button color to green to show correct answer
+                playCoinFlip(); // Plays when player has earned a coin
             }else{ // INCORRECT ANSWER
                 mQuestions.get(0).setIncorrectGuess(mAnswerButton0.getText().toString());
                 game.incorrectAnswer(mQuestions.get(0));// Adds the current question to incorrectly answered questions and Sets streak back to zero
@@ -144,6 +158,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             if(answerIsCorrect(selectedAnswer)){ // CORRECT ANSWER
                 game.correctAnswer(mQuestions.get(0).getDifficulty());
                 mAnswerButton1.setBackgroundColor(0xff00ff00);
+                playCoinFlip();
             }else{ // INCORRECT ANSWER
                 mQuestions.get(0).setIncorrectGuess(mAnswerButton1.getText().toString());
                 game.incorrectAnswer(mQuestions.get(0));
@@ -154,6 +169,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             if(answerIsCorrect(selectedAnswer)){ // CORRECT ANSWER
                 game.correctAnswer(mQuestions.get(0).getDifficulty());
                 mAnswerButton2.setBackgroundColor(0xff00ff00);
+                playCoinFlip();
             }else{ // INCORRECT ANSWER
                 mQuestions.get(0).setIncorrectGuess(mAnswerButton2.getText().toString());
                 game.incorrectAnswer(mQuestions.get(0));
@@ -164,13 +180,13 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             if(answerIsCorrect(selectedAnswer)){ // CORRECT ANSWER
                 game.correctAnswer(mQuestions.get(0).getDifficulty());
                 mAnswerButton3.setBackgroundColor(0xff00ff00);
+                playCoinFlip();
             }else{ // INCORRECT ANSWER
                 mQuestions.get(0).setIncorrectGuess(mAnswerButton3.getText().toString());
                 game.incorrectAnswer(mQuestions.get(0));
                 mAnswerButton3.setBackgroundColor(0xffff0000);
             }
         }
-
         checkIfStillPlaying();
     }
 
@@ -231,6 +247,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         }
         qTimer();
 
+
         String coinDisplay = "x " + game.getNumOfCoins();
         mCoinCount.setText(coinDisplay);
         mCurrentScore.setText(Integer.toString(game.getScore()));
@@ -272,6 +289,16 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         mAnswerButton1.setClickable(b);
         mAnswerButton2.setClickable(b);
         mAnswerButton3.setClickable(b);
+    }
+
+    // Plays a spin animation on the coin image
+    public void playCoinFlip(){
+        if(game.getCorrectAnswerStreak() % 5 == 0){
+            // Set spinning coin animation to mCoin Image View
+            mCoin.setImageDrawable(getResources().getDrawable(R.drawable.animation_coin));
+            AnimationDrawable coinAnimation = (AnimationDrawable) mCoin.getDrawable();
+            coinAnimation.start();
+        }
     }
 }
 

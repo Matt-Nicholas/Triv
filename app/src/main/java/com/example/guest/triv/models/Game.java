@@ -1,6 +1,9 @@
 package com.example.guest.triv.models;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+
 import org.parceler.Parcel;
 
 @Parcel
@@ -27,6 +30,7 @@ public class Game {
     public void increaseCoinsByOne(){
         mNumOfCoins ++;
     }
+
     private void increaseScore(String difficulty){
         switch(difficulty){
             case "easy": mScore += 5;
@@ -40,9 +44,11 @@ public class Game {
 
     public void correctAnswer(String difficulty){
         increaseStreak();
+        Log.d("MATT **** ", Integer.toString(mCorrectAnswerStreak));
         increaseScore(difficulty);
         if((mCorrectAnswerStreak % 5) == 0){
             increaseCoinsByOne();
+            Log.d("MATT * coins", Integer.toString(mNumOfCoins));
         }
     }
 
