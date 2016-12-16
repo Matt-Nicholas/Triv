@@ -24,6 +24,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     @Bind(R.id.butt_highscores) Button mHighScoresButton;
     @Bind(R.id.butt_start_game) Button mPlayButton;
     @Bind(R.id.butt_help) Button mHelpButton;
+
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private SharedPreferences.Editor mEditor;
@@ -97,7 +98,7 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v){
         if(v == mHighScoresButton){
-            Intent intent = new Intent(HomeScreenActivity.this, HighScoreListActivity.class);
+            Intent intent = new Intent(HomeScreenActivity.this, HighScoreActivity.class);
             startActivity(intent);
         }
         if(v == mPlayButton){

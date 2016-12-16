@@ -1,10 +1,8 @@
 package com.example.guest.triv.models;
 
-import android.util.Log;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
-
-import org.parceler.Parcel;
 
 @Parcel
 public class Game {
@@ -22,7 +20,6 @@ public class Game {
 
     // Empty constructor needed by the Parceler library
     public Game(){}
-
 
     public void decreaseCoinsByOne(){
         mNumOfCoins --;
@@ -44,11 +41,9 @@ public class Game {
 
     public void correctAnswer(String difficulty){
         increaseStreak();
-        Log.d("MATT **** ", Integer.toString(mCorrectAnswerStreak));
         increaseScore(difficulty);
         if((mCorrectAnswerStreak % 5) == 0){
             increaseCoinsByOne();
-            Log.d("MATT * coins", Integer.toString(mNumOfCoins));
         }
     }
 

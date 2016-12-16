@@ -24,8 +24,12 @@ import com.example.guest.triv.models.Game;
 import com.example.guest.triv.models.HighScore;
 import com.example.guest.triv.models.Question;
 import com.example.guest.triv.services.TriviaService;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import org.parceler.Parcels;
 
@@ -49,12 +53,12 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private String mUser;
     private boolean mTimerExists = false;
     int timer;
-
+    Query queryRef;
+    public ArrayList<Integer> mHighScores = new ArrayList<>();
     List<String> allAnswers = new ArrayList<>();
-
+    private DatabaseReference mHighScoreReference;
     ProgressBar mProgressBar;
     CountDownTimer mCountDownTimer;
-
 
     //Bind views using ButtKnife
     @Bind(R.id.categoryView) TextView mCategoryView;
@@ -76,7 +80,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         String mCategory = mSharedPreferences.getString(Constants.CHOSEN_CATEGORY, null);
         mUser = mSharedPreferences.getString(Constants.CURRENT_USER, null);
 
-
         // Set on click listeners
         mAnswerButton0.setOnClickListener(this);
         mAnswerButton1.setOnClickListener(this);
@@ -89,25 +92,11 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         }
         getQuestions();
 
-
         textSwitcher.setInAnimation(this, R.anim.slide_in_left);
         textSwitcher.setOutAnimation(this, R.anim.slide_out_left);
 
         textSwitcher.addView(new TextView(this));
         textSwitcher.addView(new TextView(this));
-
-//        textSwitcher = (TextSwitcher) findViewById(R.id.text_switcher);
-//
-//        textSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
-//            @Override
-//            public View makeView () {
-//                return new TextView(QuizActivity.this);
-//            }
-//        });
-
-
-//        textSwitcher.setInAnimation(this, R.anim.slide_in_left);
-//        textSwitcher.setOutAnimation(this, R.anim.slide_out_left);
     }
 
     public void qTimer(){
@@ -228,7 +217,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
     public void checkIfStillPlaying(){
         if(game.getNumOfCoins() <= 0){  // GAME OVER
-            saveScore();
+            checkForNewHighScore();
             Intent intent = new Intent(QuizActivity.this, GameOverActivity.class);
             intent.putExtra("game", Parcels.wrap(game)); // Passes current game to the game over activity
             startActivity(intent);
@@ -257,7 +246,34 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
-//
+
+    // Check firebase to see if score is a new high score
+    public void checkForNewHighScore(){
+        mHighScoreReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_HIGH_SCORES);
+        queryRef = mHighScoreReference.orderByChild("score").limitToFirst(100);
+        queryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                    HighScore score = postSnapshot.getValue(HighScore.class);
+                    mHighScores.add(score.getScore());
+                    if(game.getScore() > mHighScores.get(0)){
+                        saveScore();
+                        Toast.makeText(QuizActivity.this, "New High Score!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
     //Create HighScore object and save it to firebase
     public void saveScore(){
         DatabaseReference mHighScoreReference;
@@ -266,7 +282,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 .getInstance()
                 .getReference(Constants.FIREBASE_CHILD_HIGH_SCORES);
         mHighScoreReference.push().setValue(hs);
-        Toast.makeText(QuizActivity.this, "New High Score!", Toast.LENGTH_SHORT).show();
     }
 
     // UPDATE DISPLAY
@@ -275,7 +290,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             mCountDownTimer.cancel();
         }
         qTimer();
-
 
         String coinDisplay = "x " + game.getNumOfCoins();
         mCoinCount.setText(coinDisplay);
@@ -289,8 +303,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         // Sets text for new question views
         mCategoryView.setText(newQuestion.getCategory());
-
-//        mQuestionView.setText(newQuestion.getQuestion());
 
         final String mQuestion = newQuestion.getQuestion();
 
@@ -325,7 +337,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         mAnswerButton2.setClickable(b);
         mAnswerButton3.setClickable(b);
     }
-
     // Plays a spin animation on the coin image
     public void playCoinFlip(){
         if(game.getCorrectAnswerStreak() % 5 == 0){
@@ -335,12 +346,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             coinAnimation.start();
         }
     }
-
-//    public void playTimer(){
-//        mTimer.setImageDrawable(getResources().getDrawable(R.drawable.animation_timer));
-//        AnimationDrawable timerAnimation = (AnimationDrawable) mTimer.getDrawable();
-//        timerAnimation.start();
-//    }
 }
 
 
