@@ -92,13 +92,13 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        timer = 0;
+        timer = 200;
         mProgressBar=(ProgressBar)findViewById(R.id.pb_question_timer);
         mProgressBar.setProgress(timer);
         mCountDownTimer=new CountDownTimer(20000,100) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timer++;
+                timer--;
                 mProgressBar.setProgress(timer);
             }
 
@@ -300,6 +300,12 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             coinAnimation.start();
         }
     }
+
+//    public void playTimer(){
+//        mTimer.setImageDrawable(getResources().getDrawable(R.drawable.animation_timer));
+//        AnimationDrawable timerAnimation = (AnimationDrawable) mTimer.getDrawable();
+//        timerAnimation.start();
+//    }
 }
 
 

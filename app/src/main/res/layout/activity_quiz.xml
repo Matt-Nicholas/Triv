@@ -179,7 +179,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:max="200"
-        android:progress="0"
+        android:progress="200"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"/>
 
