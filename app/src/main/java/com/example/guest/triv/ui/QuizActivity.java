@@ -3,6 +3,8 @@ package com.example.guest.triv.ui;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -95,11 +97,22 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         timer = 200;
         mProgressBar=(ProgressBar)findViewById(R.id.pb_question_timer);
         mProgressBar.setProgress(timer);
+
         mCountDownTimer=new CountDownTimer(20000,100) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timer--;
                 mProgressBar.setProgress(timer);
+                if(timer > 100){
+                    mProgressBar.getProgressDrawable().setColorFilter(
+                            Color.GREEN, android.graphics.PorterDuff.Mode.MULTIPLY);
+                }else if( timer > 50){
+                    mProgressBar.getProgressDrawable().setColorFilter(
+                            Color.YELLOW, android.graphics.PorterDuff.Mode.MULTIPLY);
+                }else{
+                    mProgressBar.getProgressDrawable().setColorFilter(
+                            Color.RED, android.graphics.PorterDuff.Mode.MULTIPLY);
+                }
             }
 
             @Override
