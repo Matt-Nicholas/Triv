@@ -59,6 +59,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     private DatabaseReference mHighScoreReference;
     ProgressBar mProgressBar;
     CountDownTimer mCountDownTimer;
+    private int tempScore;
 
     //Bind views using ButtKnife
     @Bind(R.id.categoryView) TextView mCategoryView;
@@ -218,6 +219,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     public void checkIfStillPlaying(){
         if(game.getNumOfCoins() <= 0){  // GAME OVER
             checkForNewHighScore();
+            if(game.getScore() > tempScore){
+                saveScore();
+                Toast.makeText(QuizActivity.this, "New High Score!", Toast.LENGTH_SHORT).show();
+            }
             Intent intent = new Intent(QuizActivity.this, GameOverActivity.class);
             intent.putExtra("game", Parcels.wrap(game)); // Passes current game to the game over activity
             startActivity(intent);
@@ -249,6 +254,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
     // Check firebase to see if score is a new high score
     public void checkForNewHighScore(){
+        int temp;
         mHighScoreReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_HIGH_SCORES);
         queryRef = mHighScoreReference.orderByChild("score").limitToLast(100);
         queryRef.addValueEventListener(new ValueEventListener() {
@@ -257,14 +263,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     HighScore score = postSnapshot.getValue(HighScore.class);
                     mHighScores.add(score.getScore());
-                    if(game.getScore() > mHighScores.get(0)){
-                        saveScore();
-                        Toast.makeText(QuizActivity.this, "New High Score!", Toast.LENGTH_SHORT).show();
-                    }
                 }
-
+                tempScore = mHighScores.get(0);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
