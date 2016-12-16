@@ -250,7 +250,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     // Check firebase to see if score is a new high score
     public void checkForNewHighScore(){
         mHighScoreReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_HIGH_SCORES);
-        queryRef = mHighScoreReference.orderByChild("score").limitToFirst(100);
+        queryRef = mHighScoreReference.orderByChild("score").limitToLast(100);
         queryRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
