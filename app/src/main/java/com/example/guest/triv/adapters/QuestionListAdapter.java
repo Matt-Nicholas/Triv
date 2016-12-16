@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.guest.triv.R;
 import com.example.guest.triv.models.Question;
+import com.example.guest.triv.ui.GameOverActivity;
 import com.example.guest.triv.ui.QuestionDetailActivity;
 
 import org.parceler.Parcels;

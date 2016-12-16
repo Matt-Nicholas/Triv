@@ -55,6 +55,7 @@ public class QuestionDetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(QuestionDetailActivity.this, HomeScreenActivity.class);
                 startActivity(intent);
                 finish();
+
                 return true;
 
 //            case R.id.action_favorite:

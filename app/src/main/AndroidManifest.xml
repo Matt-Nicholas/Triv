@@ -22,8 +22,7 @@
         </activity>
         <activity
             android:name=".ui.CategoryActivity"
-            android:parentActivityName=".ui.HomeScreenActivity"
-            android:screenOrientation="portrait">
+            android:parentActivityName=".ui.HomeScreenActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.guest.triv.ui.HomeScreenActivity"/>
