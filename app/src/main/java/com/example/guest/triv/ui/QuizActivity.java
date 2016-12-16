@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -15,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,10 +28,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.parceler.Parcels;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import okhttp3.Call;
@@ -56,7 +58,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
     //Bind views using ButtKnife
     @Bind(R.id.categoryView) TextView mCategoryView;
-    @Bind(R.id.questionView) TextView mQuestionView;
     @Bind(R.id.answerButton0) Button mAnswerButton0;
     @Bind(R.id.answerButton1) Button mAnswerButton1;
     @Bind(R.id.answerButton2) Button mAnswerButton2;
@@ -64,6 +65,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.tv_coin_count) TextView mCoinCount;
     @Bind(R.id.tv_score) TextView mCurrentScore;
     @Bind(R.id.iv_coin) ImageView mCoin;
+    @Bind(R.id.text_switcher) TextSwitcher textSwitcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String mCategory = mSharedPreferences.getString(Constants.CHOSEN_CATEGORY, null);
         mUser = mSharedPreferences.getString(Constants.CURRENT_USER, null);
+
 
         // Set on click listeners
         mAnswerButton0.setOnClickListener(this);
@@ -86,6 +89,25 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         }
         getQuestions();
 
+
+        textSwitcher.setInAnimation(this, R.anim.slide_in_left);
+        textSwitcher.setOutAnimation(this, R.anim.slide_out_left);
+
+        textSwitcher.addView(new TextView(this));
+        textSwitcher.addView(new TextView(this));
+
+//        textSwitcher = (TextSwitcher) findViewById(R.id.text_switcher);
+//
+//        textSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
+//            @Override
+//            public View makeView () {
+//                return new TextView(QuizActivity.this);
+//            }
+//        });
+
+
+//        textSwitcher.setInAnimation(this, R.anim.slide_in_left);
+//        textSwitcher.setOutAnimation(this, R.anim.slide_out_left);
     }
 
     public void qTimer(){
@@ -248,7 +270,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     // UPDATE DISPLAY
-    public void setNewQuestion(String category, String type, String difficulty, String question, String correctAnswer, ArrayList<String> incorrectAnswer){
+    public void setNewQuestion(String category, String type, String difficulty, final String question, String correctAnswer, ArrayList<String> incorrectAnswer){
         if(mTimerExists){
             mCountDownTimer.cancel();
         }
@@ -267,7 +289,13 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         // Sets text for new question views
         mCategoryView.setText(newQuestion.getCategory());
-        mQuestionView.setText(newQuestion.getQuestion());
+
+//        mQuestionView.setText(newQuestion.getQuestion());
+
+        final String mQuestion = newQuestion.getQuestion();
+
+
+        textSwitcher.setText(mQuestion);
 
         // Creates a new random int from 0-3
         int randInt = randGen.nextInt(4);

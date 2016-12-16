@@ -146,21 +146,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/loading_question"
-        android:id="@+id/questionView"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/_primaryLight"
-        android:typeface="monospace"
-        android:layout_marginTop="75dp"
-        android:layout_below="@+id/categoryView"
-        android:layout_centerHorizontal="true"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/question_mark"
         android:id="@+id/categoryView"
@@ -183,5 +168,16 @@
         android:progress="200"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"/>
+
+    <TextSwitcher
+        android:id="@+id/text_switcher"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/pb_question_timer"
+        android:layout_above="@+id/answerButton0"
+        android:layout_margin="20dp"
+        android:animateFirstView="true" />
 
 </RelativeLayout>
