@@ -2,10 +2,10 @@ package com.example.guest.triv.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,6 +31,9 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (getIntent().getBooleanExtra("EXIT", false)) {
+            finish();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         ButterKnife.bind(this);
@@ -54,7 +57,10 @@ public class HomeScreenActivity extends AppCompatActivity implements View.OnClic
     }
     @Override
     public void onBackPressed() {
-        finish();
+        Intent intent = new Intent(HomeScreenActivity.this, HomeScreenActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
     }
     private void addUserToSharedPreferences(String location) {
         mEditor.putString(Constants.CURRENT_USER, location).apply();
