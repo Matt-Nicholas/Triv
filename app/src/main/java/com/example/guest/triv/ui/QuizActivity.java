@@ -74,8 +74,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         String mCategory = mSharedPreferences.getString(Constants.CHOSEN_CATEGORY, null);
         mUser = mSharedPreferences.getString(Constants.CURRENT_USER, null);
 
-
-
         // Set on click listeners
         mAnswerButton0.setOnClickListener(this);
         mAnswerButton1.setOnClickListener(this);
@@ -91,9 +89,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void qTimer(){
-
-
-
         timer = 200;
         mProgressBar=(ProgressBar)findViewById(R.id.pb_question_timer);
         mProgressBar.setProgress(timer);
@@ -126,7 +121,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         };
         mTimerExists = true;
     }
-
 
     @Override
     public void onBackPressed() {
