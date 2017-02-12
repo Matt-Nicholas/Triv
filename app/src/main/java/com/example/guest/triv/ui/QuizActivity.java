@@ -347,6 +347,13 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             coinAnimation.start();
         }
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mCountDownTimer.cancel();
+        finish();
+    }
 }
 
 
