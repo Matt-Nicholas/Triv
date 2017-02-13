@@ -10,6 +10,7 @@ import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -98,6 +99,12 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
         textSwitcher.addView(new TextView(this));
         textSwitcher.addView(new TextView(this));
+
+        TextView t1 = (TextView) textSwitcher.getChildAt(0);
+        t1.setTextSize(25);
+
+        TextView t2 = (TextView) textSwitcher.getChildAt(1);
+        t2.setTextSize(25);
     }
 
     public void qTimer(){
@@ -308,7 +315,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         final String mQuestion = newQuestion.getQuestion();
 
 
-        textSwitcher.setText(mQuestion);
+        textSwitcher.setText(mQuestion);;
 
         // Creates a new random int from 0-3
         int randInt = randGen.nextInt(4);
